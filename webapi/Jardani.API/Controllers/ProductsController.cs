@@ -27,13 +27,17 @@ public class ProductsController : ControllerBase
     public async Task<ActionResult<IReadOnlyList<string>>> GetTypes()
         => Ok(await _productReadRepository.GetTypesAsync());
 
-    [HttpGet("bybrands")]
-    public async Task<ActionResult<IReadOnlyList<string>>> GetProductsByBrands(string? brand, string? type)
-        => Ok(await _productReadRepository.GetAsync(x => x.Brand == brand && x.Type == type));
+    // [HttpGet("bybrands")]
+    // public async Task<ActionResult<IReadOnlyList<string>>> GetProductsByBrands(string? brand, string? type)
+    //     => Ok(await _productReadRepository.GetAsync(x => x.Brand == brand && x.Type == type));
+
+    // [HttpGet]
+    // public async Task<ActionResult<IReadOnlyList<Product>>> GetProducts()
+    //     => await _context.Products.ToListAsync();
 
     [HttpGet]
-    public async Task<ActionResult<IReadOnlyList<Product>>> GetProducts()
-        => await _context.Products.ToListAsync();
+    public async Task<ActionResult<IReadOnlyList<Product>>> GetProducts(string? brand, string? type, string? sort)
+        => Ok(await _productReadRepository.GetProductsAsync(brand, type, sort));
 
     [HttpGet("{id:int}")]
     public async Task<ActionResult<Product>> GetProduct(int id)
