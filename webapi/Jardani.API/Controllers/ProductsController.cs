@@ -1,3 +1,4 @@
+using Jardani.Application.IRepositories;
 using Jardani.Domain.Entities;
 using Jardani.Infrastructure.EFCore.Contexts;
 using Microsoft.AspNetCore.Mvc;
@@ -10,9 +11,21 @@ namespace Jardani.API.Controllers;
 public class ProductsController : ControllerBase
 {
     private readonly StoreDbContext _context;
+    private readonly IProductReadRepository _productReadRepository;
 
-    public ProductsController(StoreDbContext context)
-        => this._context = context;
+    public ProductsController(StoreDbContext context, IProductReadRepository productReadRepository)
+    {
+        _context = context;
+        _productReadRepository = productReadRepository;
+    }
+
+    [HttpGet("brands")]
+    public async Task<ActionResult<IReadOnlyList<string>>> GetBrands()
+        => Ok(await _productReadRepository.GetBrandsAsync());
+
+    [HttpGet("types")]
+    public async Task<ActionResult<IReadOnlyList<string>>> GetTypes()
+        => Ok(await _productReadRepository.GetTypesAsync());
 
     [HttpGet]
     public async Task<ActionResult<IReadOnlyList<Product>>> GetProducts()
