@@ -9,9 +9,9 @@ namespace Jardani.API.Controllers;
 [Route("api/[controller]")]
 public class ProductsController : ControllerBase
 {
-    private readonly StoreContext _context;
+    private readonly StoreDbContext _context;
 
-    public ProductsController(StoreContext context)
+    public ProductsController(StoreDbContext context)
         => this._context = context;
 
     [HttpGet]
