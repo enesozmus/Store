@@ -1,13 +1,14 @@
 using Jardani.Application.IRepositories;
 using Jardani.Application.Specifications;
+using Jardani.Application.Specifications.Params;
 using Jardani.Domain.Entities;
 using Microsoft.AspNetCore.Mvc;
 
 namespace Jardani.API.Controllers;
 
-[ApiController]
-[Route("api/[controller]")]
-public class ProductsController : ControllerBase
+// [ApiController]
+// [Route("api/[controller]")]
+public class ProductsController : BaseApiController
 {
     // private readonly StoreDbContext _context;
     private readonly IProductReadRepository _productReadRepository;
@@ -18,6 +19,14 @@ public class ProductsController : ControllerBase
         // _context = context;
         _productReadRepository = productReadRepository;
         _productWriteRepository = productWriteRepository;
+    }
+
+    [HttpGet]
+    public async Task<ActionResult<IReadOnlyList<Product>>> GetProducts([FromQuery] ProductSpecParams specParams)
+    {
+        var spec = new ProductSpecification(specParams);
+
+        return await CreatePagedResult(_productReadRepository, spec, specParams.PageIndex, specParams.PageSize);
     }
 
     // [HttpGet("bybrands")]
