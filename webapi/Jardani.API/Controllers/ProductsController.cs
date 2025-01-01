@@ -47,12 +47,13 @@ public class ProductsController : BaseApiController
 
     [HttpGet("{id:int}")] // api/products/2
     public async Task<ActionResult<Product>> GetProduct(int id)
-    {
+        => await _productReadRepository.GetByIdAsync(id);
+    // {
         // var product = await _context.Products.FindAsync(id);
-        var product = await _productReadRepository.GetByIdAsync(id);
-        if (product == null) return NotFound();
-        return product;
-    }
+        // var product = await _productReadRepository.GetByIdAsync(id);
+        // if (product == null) return NotFound();
+        // return product;
+    // }
 
     [HttpPost]
     public async Task<ActionResult<Product>> CreateProduct(Product product)

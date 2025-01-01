@@ -1,3 +1,5 @@
+using Jardani.API.Exceptions.ExceptionHandlers;
+using Jardani.API.Middlewares;
 using Jardani.Infrastructure;
 using Jardani.Infrastructure.EFCore.Contexts;
 using Jardani.Infrastructure.EFCore.Seeds;
@@ -9,11 +11,17 @@ var builder = WebApplication.CreateBuilder(args);
     builder.Services.AddControllers();
     builder.Services.AddEndpointsApiExplorer();
     builder.Services.ConfigureInfrastructureServices(builder.Configuration);
+    builder.Services.AddExceptionHandler<BadRequestExceptionHandler>();
+    builder.Services.AddExceptionHandler<UnauthorizedExceptionHandler>();
+    builder.Services.AddExceptionHandler<NotFoundExceptionHandler>();
+    builder.Services.AddExceptionHandler<GlobalExceptionHandler>();
+    builder.Services.AddProblemDetails();
 }
 
 var app = builder.Build();
 
 {
+    app.UseExceptionHandler(opt => { });
     app.UseHttpsRedirection();
 
     app.UseAuthorization();

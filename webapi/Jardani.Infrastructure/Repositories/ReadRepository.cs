@@ -2,6 +2,7 @@ using System.Linq.Expressions;
 using Jardani.Application.IRepositories;
 using Jardani.Application.Specifications.Common;
 using Jardani.Domain.Entities;
+using Jardani.Domain.Exceptions;
 using Jardani.Infrastructure.EFCore.Contexts;
 using Jardani.Infrastructure.Specifications;
 using Microsoft.EntityFrameworkCore;
@@ -95,8 +96,15 @@ public class ReadRepository<T> : IReadRepository<T> where T : BaseEntity
          => TableNoTracking.Where(predicate);
 
 
+    // public async Task<T> GetByIdAsync(int id)
+    //      => await _context.Set<T>().FindAsync(id);
+
     public async Task<T> GetByIdAsync(int id)
-         => await _context.Set<T>().FindAsync(id);
+    {
+        var entity = await _context.Set<T>().FindAsync(id);
+        if (entity == null) throw new NotFoundException($"{typeof(T).Name} not found with id: {id} (TEST) (TEST) (TEST) (Jardani)");
+        return entity;
+    }
 
     public async Task<T> GetByIdAsyncWithIncludes(Expression<Func<T, bool>> predicate = null, Func<IQueryable<T>, IIncludableQueryable<T, object>>? include = null)
     {
