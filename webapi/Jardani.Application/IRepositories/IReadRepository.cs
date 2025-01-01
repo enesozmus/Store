@@ -1,4 +1,5 @@
 using System.Linq.Expressions;
+using Jardani.Application.Specifications.Common;
 using Jardani.Domain.Entities;
 using Microsoft.EntityFrameworkCore.Query;
 
@@ -27,4 +28,16 @@ public interface IReadRepository<T> : IRepository<T> where T : BaseEntity
 
     Task<int> CountAsync();
     Task<int> CountAsync(Expression<Func<T, bool>> predicate);
+
+    bool Exists(int id);
+
+    #region Specification Pattern
+
+    Task<T?> GetSingleAsyncWithSpec(ISpecification<T> spec);
+    Task<TResult?> GetSingleAsyncWithSpec<TResult>(ISpecification<T, TResult> spec);
+    Task<IReadOnlyList<T>> GetListAsyncWithSpec(ISpecification<T> spec);
+    Task<IReadOnlyList<TResult>> GetListAsyncWithSpec<TResult>(ISpecification<T, TResult> spec);
+    Task<int> CountAsyncWithSpec(ISpecification<T> spec);
+
+    #endregion
 }

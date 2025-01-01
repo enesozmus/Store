@@ -1,7 +1,9 @@
 using System.Linq.Expressions;
 using Jardani.Application.IRepositories;
+using Jardani.Application.Specifications.Common;
 using Jardani.Domain.Entities;
 using Jardani.Infrastructure.EFCore.Contexts;
+using Jardani.Infrastructure.Specifications;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Query;
 
@@ -127,4 +129,41 @@ public class ReadRepository<T> : IReadRepository<T> where T : BaseEntity
 
     public async Task<int> CountAsync(Expression<Func<T, bool>> predicate)
           => await _context.Set<T>().CountAsync(predicate);
+
+
+    public bool Exists(int id)
+        => _context.Set<T>().Any(x => x.Id == id);
+
+
+    #region Specification Pattern
+    public async Task<T?> GetSingleAsyncWithSpec(ISpecification<T> spec)
+        => await ApplySpecification(spec).FirstOrDefaultAsync();
+
+    public async Task<TResult?> GetSingleAsyncWithSpec<TResult>(ISpecification<T, TResult> spec)
+        => await ApplySpecification(spec).FirstOrDefaultAsync();
+
+    public async Task<IReadOnlyList<T>> GetListAsyncWithSpec(ISpecification<T> spec)
+        => await ApplySpecification(spec).ToListAsync();
+
+    public async Task<IReadOnlyList<TResult>> GetListAsyncWithSpec<TResult>(ISpecification<T, TResult> spec)
+        => await ApplySpecification(spec).ToListAsync();
+
+    public async Task<int> CountAsyncWithSpec(ISpecification<T> spec)
+    {
+        IQueryable<T> query = TableNoTracking;
+
+        query = spec.ApplyCriteria(query);
+
+        return await query.CountAsync();
+    }
+    #endregion
+
+    #region Apply Specifications
+    private IQueryable<T> ApplySpecification(ISpecification<T> spec)
+    => SpecificationEvaluator<T>.GetQuery(_context.Set<T>().AsQueryable(), spec);
+
+
+    private IQueryable<TResult> ApplySpecification<TResult>(ISpecification<T, TResult> spec)
+        => SpecificationEvaluator<T>.GetQuery<T, TResult>(_context.Set<T>().AsQueryable(), spec);
+    #endregion
 }
