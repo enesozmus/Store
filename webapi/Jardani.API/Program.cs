@@ -16,12 +16,14 @@ var builder = WebApplication.CreateBuilder(args);
     builder.Services.AddExceptionHandler<NotFoundExceptionHandler>();
     builder.Services.AddExceptionHandler<GlobalExceptionHandler>();
     builder.Services.AddProblemDetails();
+    builder.Services.AddCors();
 }
 
 var app = builder.Build();
 
 {
     app.UseExceptionHandler(opt => { });
+    app.UseCors(x => x.AllowAnyHeader().AllowAnyMethod().AllowCredentials().WithOrigins("http://localhost:4200","https://localhost:4200"));
     app.UseHttpsRedirection();
 
     app.UseAuthorization();
