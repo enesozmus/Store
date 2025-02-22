@@ -207,11 +207,78 @@ h4 {
 }
 
 /*-----------------------------------*\
+  #REUSABLE STYLES
+\*-----------------------------------*/
+.container {
+  max-width: 1280px;
+  margin: 0 auto;
+  padding: 0 0.938em;
+}
+
+.mobile-hide {
+  display: none;
+}
+
+.column {
+  margin-left: -0.938em;
+  margin-right: -0.938em;
+}
+
+.column .row {
+  padding: 0 0.938em;
+}
+
+.flexwrap {
+  display: flex;
+  flex-wrap: wrap;
+}
+
+.flexwrap .row {
+  width: 100%;
+  margin-bottom: 2em;
+  flex: 0 0 100%;
+}
+
+.flexcenter {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.flexitem {
+  display: flex;
+  align-items: center;
+}
+
+.flexcol {
+  display: flex;
+  flex-direction: column;
+  gap: 1em;
+}
+
+/*-----------------------------------*\
   #MEDIA QUERIES
 \*-----------------------------------*/
+//
+//
 @media only screen and (min-width: 481px) {
 }
+//
+//
 @media only screen and (min-width: 768px) {
 }
+//
+//
 @media only screen and (min-width: 992px) {
+  .container {
+    padding: 0 2em;
+  }
+
+  .desktop-hide {
+    display: none !important;
+  }
+
+  .mobile-hide {
+    display: block;
+  }
 }
