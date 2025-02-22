@@ -3,5 +3,14 @@
 </header>
 <main>
   <app-home />
+  <ul>
+    @for(product of products; track product.id) {
+      <li>{{product.id}}</li>
+      <li>{{product.name}}</li>
+      <li>{{product.price}}</li>
+      <li>---</li>
+      <li>---</li>
+    }
+  </ul>
 </main>
 <footer></footer>
