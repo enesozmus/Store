@@ -1,0 +1,135 @@
+.header-nav {
+  padding: 0.5em 0;
+  margin-bottom: 1.5em;
+  border-bottom: 1px solid var(--border-color);
+}
+
+nav > ul {
+  line-height: 100px;
+  gap: 2em;
+}
+
+nav .fly-item {
+  top: 50%;
+  margin-top: -24px;
+  width: 32px;
+  border-radius: 3px;
+  right: -32px;
+  background-color: var(--primary-color);
+}
+
+.right {
+  position: relative;
+  margin-left: auto;
+}
+
+.right .icon-large {
+  position: relative;
+}
+
+.right .fly-item {
+  top: 0;
+  right: 16px;
+  width: 16px;
+  background-color: var(--secondary-dark-color);
+  border-radius: 50%;
+}
+
+@media only screen and (min-width: 992px) {
+  .header-nav {
+    padding: 0;
+    margin: 0;
+    border-bottom: 0;
+  }
+
+  .logo a {
+    margin-right: 2em;
+  }
+
+  .right li > a {
+    margin-left: 1em;
+  }
+
+  .mega {
+    position: absolute;
+    width: 100%;
+    height: auto;
+    top: auto;
+    left: 0;
+    right: 0;
+    padding: 2.5em;
+    line-height: 2em;
+    background-color: var(--light-bg-color);
+    box-shadow: rgb(0 0 0 / 20%) 0 30px 20px -30px;
+    z-index: 100;
+
+    display: none;
+  }
+
+  nav li.has-child:is(:hover, :focus) .mega {
+    display: block;
+  }
+
+  .mega .wrapper {
+    display: flex;
+  }
+
+  .mega h4 {
+    font-size: 0.8em;
+    text-transform: uppercase;
+  }
+
+  .mega ul {
+    font-size: var(--font-small);
+  }
+
+  .women-brands {
+    display: flex;
+    flex-wrap: wrap;
+    max-width: 180px;
+  }
+
+  .women-brands li {
+    min-width: 80px;
+  }
+
+  .view-all {
+    margin-top: 1em;
+  }
+
+  .most-wanted {
+    flex: 2;
+    padding: 0;
+    align-items: center;
+    position: relative;
+  }
+
+  .most-wanted .row {
+    width: 100%;
+  }
+
+  .most-wanted .media {
+    height: 400px;
+  }
+
+  .text-content {
+    line-height: initial;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 0.5em;
+    margin-top: 0.5em;
+    position: absolute;
+    bottom: 4em;
+    width: 100%;
+
+    color: var(--dark-color);
+    right: 2.5%;
+  }
+
+  .text-content h4 {
+    font-size: 2em;
+    font-weight: var(--fw8);
+    text-align: center;
+  }
+}

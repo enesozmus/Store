@@ -265,6 +265,49 @@ header li > a {
   cursor: pointer;
 }
 
+.trigger {
+  display: flex;
+  font-size: 1.5em;
+  padding: 0.25em;
+  margin-right: 0.5em;
+}
+
+.fly-item {
+  position: absolute;
+  height: 16px;
+  font-size: var(--font-smaller);
+  padding: 3px;
+  text-align: center;
+  line-height: 10px;
+  color: var(--white-color);
+}
+
+.mega .flexcol {
+  flex: 1;
+  min-width: 180px;
+  padding-right: 2.5em;
+  margin-bottom: 1.5em;
+  z-index: 1;
+}
+
+// Text Styles
+.main-text {
+  font-size: 1.2em;
+  color: var(--light-bg-color);
+}
+
+.mini-text {
+  font-size: var(--font-smaller);
+  color: var(--light-text-color);
+}
+
+.view-all {
+  font-size: var(--font-small);
+  display: flex;
+  gap: 1em;
+  transition: var(--trans-color);
+}
+
 // Link Styles
 .main-links a:is(:hover, :focus) {
   color: var(--secondary-color);
@@ -272,6 +315,17 @@ header li > a {
 
 .second-links a:is(:hover, :focus) {
   color: var(--light-text-color);
+}
+
+.logo a {
+  position: relative;
+  display: flex;
+  padding-left: 0.75em;
+  margin-right: 2em;
+
+  font-family: "Poppins", serif;
+  font-size: 1.75em;
+  font-weight: var(--fw8);
 }
 
 // Icon Styles
@@ -286,6 +340,43 @@ header li > a {
 .icon-small {
   font-size: 1.25em;
   margin-left: auto;
+}
+
+.icon-large {
+  font-size: 1.75em;
+  padding: 0 0.75em 0 0;
+}
+
+.circle {
+  position: absolute;
+  top: -15px;
+  left: 0;
+  width: 38px;
+  height: 38px;
+  border-radius: 50%;
+  background-color: var(--light-bg-color);
+  z-index: -1;
+}
+
+.circle::before {
+  content: "";
+  position: absolute;
+  width: 28px;
+  height: 28px;
+  border-radius: 50%;
+  background-color: var(--secondary-color);
+  bottom: 5px;
+  right: 5px;
+  opacity: 0.4;
+}
+
+// Image Styles
+.object-cover img {
+  position: absolute;
+  object-fit: cover;
+  width: 100%;
+  height: 100%;
+  vertical-align: middle;
 }
 
 /*-----------------------------------*\
