@@ -6,6 +6,7 @@ import { HomeComponent } from './ui/home/home.component';
 
 import { Product } from './shared/models/product';
 import { Pagination } from './shared/models/pagination';
+import { ShopService } from './services/shop.service';
 
 @Component({
   selector: 'app-root',
@@ -15,17 +16,24 @@ import { Pagination } from './shared/models/pagination';
   styleUrl: './app.component.scss',
 })
 export class AppComponent implements OnInit {
-  baseUrl = 'https://localhost:5001/api/';
+  // private http = inject(HttpClient);
+  // baseUrl = 'https://localhost:5001/api/';
   // products: any[] = [];
   products: Product[] = [];
-  // private http = inject(HttpClient);
 
   /**
    * 🔴
    */
-  constructor(private http: HttpClient) {}
+  // constructor(private http: HttpClient) {}
+  constructor(private shopService: ShopService) {}
 
   ngOnInit() {
+    this.shopService.getProducts().subscribe({
+      next: (response) => (this.products = response.data),
+      error: (error) => console.error(error),
+      complete: () => console.log('💚complete'),
+    });
+
     // this.http.get(this.baseUrl + 'products').subscribe({
     //   next: (data) => console.log(data),
     //   error: (error) => console.error(error),
@@ -38,10 +46,10 @@ export class AppComponent implements OnInit {
     //   complete: () => console.log('💚complete'),
     // });
 
-    this.http.get<Pagination<Product>>(this.baseUrl + 'products').subscribe({
-      next: (response) => (this.products = response.data),
-      error: (error) => console.log(error),
-      complete: () => console.log('🟢completed!'),
-    });
+    // this.http.get<Pagination<Product>>(this.baseUrl + 'products').subscribe({
+    //   next: (response) => (this.products = response.data),
+    //   error: (error) => console.log(error),
+    //   complete: () => console.log('🟢completed!'),
+    // });
   }
 }
