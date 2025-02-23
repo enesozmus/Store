@@ -173,4 +173,8 @@ export class ShopComponent {
       complete: () => console.log('💚complete'),
     });
   }
+
+  onOpenFilterMenu() {
+    
+  }
 }

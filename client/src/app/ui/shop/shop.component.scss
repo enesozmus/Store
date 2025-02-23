@@ -126,6 +126,83 @@ input[type="range"]::-webkit-slider-thumb {
   margin-top: 0.5em;
 }
 
+// 🔵
+//
+.breadcrumb {
+  margin-bottom: 2em;
+}
+
+.breadcrumb li:not(:last-child)::after {
+  content: "/";
+  padding: 0 0.35em;
+}
+
+.breadcrumb li:last-child {
+  display: block;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  color: var(--light-text-color);
+}
+
+// 🔵
+//
+.cat-navigation {
+  font-size: 0.85em;
+  margin: 2em 0;
+  justify-content: flex-end;
+  gap: 1em;
+}
+
+.cat-navigation .item-filter {
+  margin-right: auto;
+}
+
+.cat-navigation > div {
+  position: relative;
+}
+
+.cat-navigation .item-filter a {
+  align-items: center;
+  text-transform: uppercase;
+}
+
+.cat-navigation ul {
+  display: none;
+  position: absolute;
+  left: 0;
+  min-width: 100%;
+  width: max-content;
+  z-index: 10;
+}
+
+.cat-navigation .label,
+.cat-navigation ul li {
+  display: flex;
+  gap: 0.5em;
+  padding: 0.5em 1em;
+  transition: var(--trans-color);
+}
+
+:where(.item-sorter, .item-options) .label,
+.cat-navigation ul {
+  color: var(--light-text-color);
+  background-color: var(--light-bg-color);
+  cursor: pointer;
+}
+
+.cat-navigation :where(label, ul li):hover {
+  color: var(--dark-color);
+}
+
+:where(.item-sorter, .item-options):hover ul {
+  display: block;
+}
+
+.load-more {
+  margin: 2em 0 4em;
+}
+
 @media only screen and (min-width: 992px) {
   .shop .holder {
     flex-direction: row;
