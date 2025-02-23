@@ -14,6 +14,17 @@ public class ProductSpecParams : PagingParams
         }
     }
 
+    private List<string> _colors = [];
+    public List<string> Colors
+    {
+        get => _colors;
+        set
+        {
+            _colors = value.SelectMany(x => x.Split(',',
+                StringSplitOptions.RemoveEmptyEntries)).ToList();
+        }
+    }
+
     private List<string> _types = [];
     public List<string> Types
     {
