@@ -1,0 +1,26 @@
+.shop {
+  margin-bottom: 8px;
+}
+.shop .holder {
+  display: flex;
+  flex-direction: column;
+}
+
+.shop .sidebar,
+.shop .section {
+  flex: 1 0 100%;
+}
+
+@media only screen and (min-width: 992px) {
+  .shop .holder {
+    flex-direction: row;
+  }
+
+  .shop .sidebar {
+    flex: 1 0 25%;
+  }
+
+  .shop .section {
+    flex: 1 0 75%;
+  }
+}

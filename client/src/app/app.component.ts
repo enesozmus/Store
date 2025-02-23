@@ -7,11 +7,12 @@ import { HomeComponent } from './ui/home/home.component';
 import { Product } from './shared/models/product';
 import { Pagination } from './shared/models/pagination';
 import { ShopService } from './services/shop.service';
+import { ShopComponent } from "./ui/shop/shop.component";
 
 @Component({
   selector: 'app-root',
   standalone: true,
-  imports: [HeaderComponent, HomeComponent],
+  imports: [HeaderComponent, HomeComponent, ShopComponent],
   templateUrl: './app.component.html',
   styleUrl: './app.component.scss',
 })
