@@ -1,0 +1,18 @@
+<div class="filter-block">
+  @for(filter of filters; track $index;) {
+    <h4>{{ filter.title }}</h4>
+    <ul>
+    @for(item of filter['items']; track $index;) {
+      <li>
+        <input type="checkbox" name="checkbox" id="{{ item.label }}" />
+        <label for="{{ item.label }}">
+          <span class="checked"></span>
+          <span>{{ item.name }}</span>
+        </label>
+        <span class="count">{{ item.count }}</span>
+      </li>
+    }
+    </ul>
+  }
+</div>
+<span></span>

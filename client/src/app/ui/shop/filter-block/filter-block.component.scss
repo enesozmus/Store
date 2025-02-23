@@ -1,0 +1,60 @@
+.filter-block {
+  margin-bottom: 1em;
+  padding-bottom: 1em;
+}
+
+.filter-block:not(:last-child) {
+  border-bottom: 1px solid var(--border-color);
+}
+
+h4 {
+  font-size: 1.25em;
+  margin-bottom: 0.5em;
+}
+
+li {
+  display: flex;
+  font-size: 0.9em;
+  position: relative;
+  line-height: 2;
+}
+
+label .checked {
+  width: 16px;
+  height: 16px;
+  position: relative;
+  line-height: 0;
+  display: inline-block;
+  border: 2px solid var(--secondary-dark-color);
+  vertical-align: text-top;
+  margin: 0 7px 0 0;
+  cursor: pointer;
+}
+
+label .checked::before {
+  content: "";
+  position: absolute;
+  width: 8px;
+  height: 8px;
+  background-color: var(--secondary-dark-color);
+  top: 2px;
+  left: 2px;
+  opacity: 0;
+}
+
+input:checked + label .checked::before {
+  opacity: 1;
+}
+
+li .count {
+  margin-left: auto;
+  color: var(--light-text-color);
+}
+
+:where(.products .variant, .filter-block:not(.pricing)) input {
+  clip: rect(0, 0, 0, 0);
+  overflow: hidden;
+  position: absolute;
+  height: 0;
+  width: 0;
+}

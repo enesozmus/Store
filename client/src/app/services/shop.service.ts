@@ -21,4 +21,13 @@ export class ShopService {
   getProducts() {
     return this.http.get<Pagination<Product>>(this.baseUrl + 'products');
   }
+  getBrands() {
+    return this.http.get<string[]>(this.baseUrl + 'products/brands');
+  }
+  getColors() {
+    return this.http.get<string[]>(this.baseUrl + 'products/colors');
+  }
+  getTypes() {
+    return this.http.get<string[]>(this.baseUrl + 'products/types');
+  }
 }

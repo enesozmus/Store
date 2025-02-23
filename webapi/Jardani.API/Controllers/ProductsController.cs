@@ -97,6 +97,10 @@ public class ProductsController : BaseApiController
         // => Ok(await _context.Products.Select(x => x.Brand).Distinct().ToListAsync());
         => Ok(await _productReadRepository.GetListAsyncWithSpec(new BrandListSpecification()));
 
+    [HttpGet("colors")]
+    public async Task<ActionResult<IReadOnlyList<string>>> GetColors()
+        => Ok(await _productReadRepository.GetListAsyncWithSpec(new ColorListSpecification()));
+
     [HttpGet("types")]
     public async Task<ActionResult<IReadOnlyList<string>>> GetTypes()
         // => Ok(await _productReadRepository.GetTypesAsync());

@@ -1,0 +1,14 @@
+<div class="filter-block">
+  @for(filter of filters; track $index;) {
+    <h4>{{ filter.title }}</h4>
+    <ul class="bycolor flexitem">
+    @for(item of filter.items; track $index;){
+      <li>
+        <input type="radio" name="color" [id]="item.label" />
+        <label [for]="item.label" class="circle"></label>
+      </li>
+    }
+    </ul>
+  }
+</div>
+<span></span>

@@ -1,0 +1,117 @@
+.filter-block {
+  margin-bottom: 1em;
+  padding-bottom: 1em;
+}
+
+.filter-block:not(:last-child) {
+  border-bottom: 1px solid var(--border-color);
+}
+
+h4 {
+  font-size: 1.25em;
+  margin-bottom: 0.5em;
+}
+
+li {
+  display: flex;
+  font-size: 0.9em;
+  position: relative;
+  line-height: 2;
+}
+
+input {
+  clip: rect(0, 0, 0, 0);
+  overflow: hidden;
+  position: absolute;
+  height: 0;
+  width: 0;
+}
+
+// circles
+.bycolor .circle {
+  display: block;
+  position: static;
+  top: 0;
+  margin: 0;
+  cursor: pointer;
+  z-index: 1;
+}
+
+// colors
+.bycolor {
+  display: flex;
+  flex-wrap: wrap;
+}
+
+.bycolor label::before {
+  opacity: 1;
+}
+
+.bycolor label[for="bej"]::before {
+  background-color: #e4d5b7;
+}
+
+.bycolor label[for="antrasit"]::before {
+  background-color: #767f94;
+}
+
+.bycolor label[for="bej-fuşya"]::before {
+  background: linear-gradient(
+    to right,
+    #DCFFBD,#CC86D1
+  );
+}
+
+.bycolor label[for="fuşya"]::before {
+  background-color: #ff00ff;
+}
+
+.bycolor label[for="ekru"]::before {
+  background-color: #f3efe0;
+}
+
+.bycolor label[for="haki"]::before {
+  background-color: #6e7153;
+}
+
+.bycolor label[for="kırmızı"]::before {
+  background-color: red;
+}
+
+.bycolor label[for="pembe"]::before {
+  background-color: pink;
+}
+
+.bycolor label[for="yeşil"]::before {
+  background-color: green;
+}
+
+.bycolor label[for="siyah"]::before {
+  background-color: black;
+}
+
+.bycolor label[for="siyah çizgili"]::before {
+  // background: linear-gradient(124deg, rgba(255,255,255,1) 50%, rgba(0,0,0,1) 50%);
+  background: linear-gradient(
+    124deg,
+    rgba(0, 0, 0, 1) 50%,
+    rgba(255, 255, 255, 1) 50%
+  );
+}
+
+.bycolor label[for="melanj"]::before {
+  background-color: #f5f5dc;
+}
+
+.bycolor label[for="mint"]::before {
+  background-color: #3eb489;
+}
+
+.bycolor label[for="mint"]::before {
+  background-color: #d2b7a6;
+}
+
+.bycolor input:checked + label {
+  background-color: transparent;
+  border: 2px solid var(--dark-color);
+}
