@@ -1,0 +1,39 @@
+.hoverable {
+  position: absolute;
+  top: 0;
+  right: 0;
+}
+
+.hoverable li a {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 28px;
+  height: 28px;
+  padding: 0.25em;
+  margin: 0.25em;
+  border-radius: 50%;
+  line-height: 1;
+  background-color: var(--white-color);
+  opacity: 0.5;
+  transition: var(--trans-background-color), opacity 0.3s;
+}
+
+.hoverable li a:is(:hover, :focus) {
+  color: var(--white-color);
+  background-color: var(--dark-color);
+}
+
+.hoverable li.active a:is(:hover, :focus) {
+  background-color: var(--primary-color);
+}
+
+.hoverable li:not(.active) {
+  transform: translateX(100%);
+  opacity: 0;
+  transition: transform 0.3s, opacity 0.2s;
+}
+
+.hoverable li:last-child {
+  transition-delay: 0.1s;
+}

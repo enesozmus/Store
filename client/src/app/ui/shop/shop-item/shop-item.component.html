@@ -1,0 +1,43 @@
+@for(item of items; track item.id) {
+  <div (click)="navigate(item.id)" class="item">
+    <!-- 1 -->
+    <div class="media">
+      <!-- 1 -->
+      <div>
+        <a>
+          <img [src]="item.pictureUrl" [alt]="item.name" />
+        </a>
+      </div>
+      <!-- 2 -->
+      <app-hoverable />
+      <!-- 3 -->
+      <app-discount [discount]="30" />
+    </div>
+    <!-- 2 -->
+    <div class="content">
+      <!-- 1 -->
+      <app-rating [addRating]="true" [rating]="1.237" />
+      <!-- 2 -->
+      <h3>
+        <a>{{ item.name }}</a>
+      </h3>
+      <!-- 3 -->
+      <!-- <app-price [oldPrice]="2499" [newPrice]="item.price" /> -->
+      <!-- 🟦 -->
+      <div class="price-cart">
+        <app-price [oldPrice]="2499" [newPrice]="item.price" />
+        <div class="button-cart">
+          <button class="primary-button">Add to cart</button>
+        </div>
+      </div>
+      <!-- 4 -->
+      <div class="footer">
+        <ul class="mini-text">
+          <li>Polyester, Cotton</li>
+          <li>Pull On closure</li>
+          <li>Fashion Personality</li>
+        </ul>
+      </div>
+    </div>
+  </div>
+}

@@ -13,6 +13,8 @@ export class ShopService {
   // products: any[] = [];
   // products: Product[] = [];
 
+  // brands: Filter[] = [];
+
   /**
    * 🔴
    */
@@ -21,8 +23,13 @@ export class ShopService {
   getProducts() {
     return this.http.get<Pagination<Product>>(this.baseUrl + 'products');
   }
+
   getBrands() {
+    // if (this.brands.length > 0) return;
     return this.http.get<string[]>(this.baseUrl + 'products/brands');
+    // return this.http
+    //   .get<string[]>(this.baseUrl + 'products/brands')
+    //   .subscribe((response) => (this.brands = response));
   }
   getColors() {
     return this.http.get<string[]>(this.baseUrl + 'products/colors');

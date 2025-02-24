@@ -1,0 +1,16 @@
+.current {
+  font-size: calc(1em + 1vw);
+  color: var(--primary-color);
+  margin-right: 0.25em;
+}
+
+.normal {
+  color: var(--light-text-color);
+  text-decoration: line-through;
+}
+
+@media only screen and (min-width: 768px) {
+  .current {
+    font-size: 1.25em;
+  }
+}

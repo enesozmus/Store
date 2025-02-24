@@ -12,29 +12,6 @@
   flex: 1 0 100%;
 }
 
-// 🟥🟥🟥🟥
-.filter {
-  position: fixed;
-  top: 0;
-  left: 0;
-  bottom: 0;
-  padding: 2em;
-  max-width: 400px;
-  width: 90%;
-  background-color: var(--white-color);
-  overflow: auto;
-  z-index: 1000;
-  box-shadow: rgb(0, 0, 0, 0.3) 0 10px 50px;
-  visibility: hidden;
-  opacity: 0;
-}
-
-.filter.active {
-  visibility: visible;
-  opacity: 1;
-}
-
-// 🟥🟥🟥🟥
 li {
   display: flex;
   font-size: 0.9em;
@@ -76,7 +53,6 @@ li .count {
   color: var(--light-text-color);
 }
 
-// 🟦🟦🟦🟦
 .stock {
   clip: rect(0, 0, 0, 0);
   overflow: hidden;
@@ -90,7 +66,6 @@ hr.new1 {
   margin-bottom: 1em;
 }
 
-// 🟥🟥🟥🟥
 input[type="range"] {
   appearance: none;
   width: 100%;
@@ -126,9 +101,8 @@ input[type="range"]::-webkit-slider-thumb {
   margin-top: 0.5em;
 }
 
-// 🔵
-//
 .breadcrumb {
+  // font-size: var(--font-small);
   margin-bottom: 2em;
 }
 
@@ -145,8 +119,6 @@ input[type="range"]::-webkit-slider-thumb {
   color: var(--light-text-color);
 }
 
-// 🔵
-//
 .cat-navigation {
   font-size: 0.85em;
   margin: 2em 0;
@@ -199,8 +171,33 @@ input[type="range"]::-webkit-slider-thumb {
   display: block;
 }
 
+.filter {
+  position: fixed;
+  top: 0;
+  left: 0;
+  bottom: 0;
+  padding: 2em;
+  max-width: 400px;
+  width: 90%;
+  background-color: var(--white-color);
+  overflow: auto;
+  z-index: 1000;
+  box-shadow: rgb(0, 0, 0, 0.3) 0 10px 50px;
+  visibility: hidden;
+  opacity: 0;
+}
+
+.filter.active {
+  visibility: visible;
+  opacity: 1;
+}
+
 .load-more {
   margin: 2em 0 4em;
+}
+
+app-shop-item {
+  display: contents;
 }
 
 @media only screen and (min-width: 992px) {
@@ -214,7 +211,6 @@ input[type="range"]::-webkit-slider-thumb {
 
   .shop .section {
     flex: 1 0 75%;
-    background-color: bisque;
   }
 
   .shop .sidebar .filter {

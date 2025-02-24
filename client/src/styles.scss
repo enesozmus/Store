@@ -419,6 +419,12 @@ header li > a {
   vertical-align: middle;
 }
 
+.products .media {
+  position: relative;
+  flex-shrink: 0;
+  overflow: hidden;
+}
+
 // Form Styles
 form {
   position: relative;

@@ -7,11 +7,12 @@ import { ShopService } from '../../services/shop.service';
 
 import { Product } from '../../shared/models/product';
 import { Filter } from '../../shared/models/filter';
+import { ShopItemComponent } from './shop-item/shop-item.component';
 
 @Component({
   selector: 'app-shop',
   standalone: true,
-  imports: [FilterBlockComponent, FilterBlockColorComponent],
+  imports: [FilterBlockComponent, FilterBlockColorComponent, ShopItemComponent],
   templateUrl: './shop.component.html',
   styleUrl: './shop.component.scss',
 })
@@ -174,7 +175,5 @@ export class ShopComponent {
     });
   }
 
-  onOpenFilterMenu() {
-    
-  }
+  onOpenFilterMenu() {}
 }

@@ -1,0 +1,19 @@
+.discount {
+  top: auto;
+  right: 0px;
+  left: auto;
+  bottom: 0px;
+  background-color: transparent;
+  z-index: 1;
+}
+
+.discount::before {
+  background-color: var(--dark-color);
+}
+
+.discount span {
+  position: relative;
+  font-size: var(--font-smaller);
+  font-weight: var(--fw5);
+  color: var(--white-color);
+}
