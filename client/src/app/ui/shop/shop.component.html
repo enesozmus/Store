@@ -72,6 +72,14 @@
                     </a>
                   </div>
                   <!-- 2 -->
+                  <div class="pagination">
+                    <a (click)="onSetIndexDecrease()">&laquo;</a>
+                    @for(item of [].constructor(numberOfPages); track $index; let i = $index){
+                      <a [class.active]="selectedPageIndex - 1 === i" (click)="onSetIndex(i)">{{i+1}}</a>
+                    }
+                    <a (click)="onSetIndexIncrease()">&raquo;</a>
+                  </div>
+                  <!-- 3 -->
                   <div class="item-sorter">
                     <div class="label">
                       <span class="mobile-hide">Sort by {{this.selectedSort}}</span>
@@ -84,18 +92,17 @@
                       }
                     </ul>
                   </div>
-                  <!-- 3 -->
+                  <!-- 4 -->
                   <div class="item-options">
                     <div class="label">
-                      <span class="mobile-hide">Show 10 per page</span>
-                      <div class="desktop-hide">10</div>
+                      <span class="mobile-hide">Show {{selectedPageSize}} per page</span>
+                      <div class="desktop-hide">{{selectedPageSize}}</div>
                       <i class="ri-arrow-down-s-line"></i>
                     </div>
                     <ul>
-                      <li>5</li>
-                      <li>10</li>
-                      <li>20</li>
-                      <li>50</li>
+                      @for(item of pageSizeOptions; track $index; let i = $index){
+                        <li (click)="onPageSizeChange(item)">{{item}}</li>
+                      }
                     </ul>
                   </div>
                 </div>

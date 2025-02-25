@@ -18,6 +18,16 @@ import { Filter } from '../../shared/models/filter';
 })
 export class ShopComponent {
   products: Product[] = [];
+
+  count: number = 0;
+  pageSize: number = 0;
+  pageIndex: number = 0;
+
+  numberOfPages: number = 0;
+  selectedPageIndex: number = 1;
+  pageSizeOptions: number[] = [3, 6, 9, 12, 15, 18, 27];
+  selectedPageSize: number = 9;
+
   brands: Filter[] = [];
   colors: Filter[] = [];
   sizes: {
@@ -85,6 +95,8 @@ export class ShopComponent {
   constructor(private shopService: ShopService) {}
 
   ngOnInit(): void {
+    // console.log(this.selectedPageIndex);
+
     // this.shopService.getProducts().subscribe({
     //   next: (response) => {
     // this.products = response.data;
@@ -161,7 +173,7 @@ export class ShopComponent {
         }
       },
       error: (error) => console.error(error),
-      complete: () => console.log('💚complete'),
+      complete: () => console.log(''),
     });
 
     this.shopService.getColors().subscribe({
@@ -178,7 +190,7 @@ export class ShopComponent {
         }
       },
       error: (error) => console.error(error),
-      complete: () => console.log('💚complete'),
+      complete: () => console.log(''),
     });
 
     this.shopService.getTypes().subscribe({
@@ -195,7 +207,7 @@ export class ShopComponent {
         }
       },
       error: (error) => console.error(error),
-      complete: () => console.log('💚complete'),
+      complete: () => console.log(''),
     });
   }
 
@@ -203,14 +215,26 @@ export class ShopComponent {
 
   applyFilters() {
     this.shopService
-      .getProducts(this.selectedBrands, this.selectedColors, this.selectedTypes, this.selectedSortValue)
+      .getProducts(
+        this.selectedBrands,
+        this.selectedColors,
+        this.selectedTypes,
+        this.selectedSortValue,
+        this.selectedPageSize,
+        this.selectedPageIndex
+      )
       .subscribe({
-        next: (response) => (this.products = response.data),
+        next: (response) => {
+          this.products = response.data;
+          this.count = response.count;
+          this.pageSize = response.pageSize;
+          this.pageIndex = response.pageIndex;
+          this.numberOfPages = Math.ceil(response.count / response.pageSize);
+          // console.log(response.count / response.pageSize);
+          console.log('numberOfPages', this.numberOfPages);
+        },
         error: (error) => console.error(error),
-        complete: () =>
-          console.log(
-            'getProducts(this.selectedBrands, this.selectedColors) 💚complete'
-          ),
+        complete: () => console.log(''),
       });
   }
 
@@ -241,6 +265,31 @@ export class ShopComponent {
     this.selectedSortValue = value;
     // console.log('🟨onSortChange', name, value);
     // console.log('🟨onSortChange', this.selectedSortValue);
-    this.applyFilters()
+    this.applyFilters();
+  }
+
+  onSetIndex(index: number) {
+    this.selectedPageIndex = index + 1;
+    console.log('selectedIndex after → ', this.selectedPageIndex);
+    this.applyFilters();
+  }
+
+  onSetIndexIncrease() {
+    if (this.selectedPageIndex + 1 <= this.numberOfPages) {
+      this.selectedPageIndex++;
+      this.applyFilters();
+    }
+  }
+
+  onSetIndexDecrease() {
+    if (this.selectedPageIndex != 1) {
+      this.selectedPageIndex--;
+      this.applyFilters();
+    }
+  }
+
+  onPageSizeChange(size: number) {
+    this.selectedPageSize = size;
+    this.applyFilters();
   }
 }

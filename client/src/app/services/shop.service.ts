@@ -28,7 +28,9 @@ export class ShopService {
     brands?: string[],
     colors?: string[],
     types?: string[],
-    sort?: string
+    sort?: string,
+    pageSize?: number,
+    pageIndex?: number
   ) {
     let params = new HttpParams();
     // console.log('service');
@@ -45,6 +47,13 @@ export class ShopService {
     }
     if (sort) {
       params = params.append('sort', sort);
+    }
+
+    if (pageSize) {
+      params = params.append('pageSize', pageSize);
+    }
+    if (pageIndex) {
+      params = params.append('pageIndex', pageIndex);
     }
 
     return this.http.get<Pagination<Product>>(this.baseUrl + 'products', {
