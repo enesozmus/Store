@@ -2,12 +2,12 @@ import { Component } from '@angular/core';
 
 import { FilterBlockColorComponent } from './filter-block-color/filter-block-color.component';
 import { FilterBlockComponent } from './filter-block/filter-block.component';
+import { ShopItemComponent } from './shop-item/shop-item.component';
 
 import { ShopService } from '../../services/shop.service';
 
 import { Product } from '../../shared/models/product';
 import { Filter } from '../../shared/models/filter';
-import { ShopItemComponent } from './shop-item/shop-item.component';
 
 @Component({
   selector: 'app-shop',
@@ -50,8 +50,17 @@ export class ShopComponent {
 
   selectedBrands: string[] = [];
   selectedColors: string[] = [];
-  // selectedSizes: string[] = [];
+  selectedSizes: string[] = [];
   selectedTypes: string[] = [];
+
+  selectedSort: string = 'Default';
+  selectedSortValue: string = 'default';
+  sortOptions = [
+    { name: 'Default', value: 'default' },
+    { name: 'Alphabetical', value: 'orderByName' },
+    { name: 'Price low-high', value: 'priceAsc' },
+    { name: 'Price high-low', value: 'priceDesc' },
+  ];
 
   // brands: {
   //   title: string;
@@ -136,7 +145,7 @@ export class ShopComponent {
     //     complete: () => console.log('getProducts(this.selectedBrands, this.selectedColors) 💚complete'),
     //   });
 
-    this.applyFilters()
+    this.applyFilters();
 
     this.shopService.getBrands().subscribe({
       next: (brands) => {
@@ -194,7 +203,7 @@ export class ShopComponent {
 
   applyFilters() {
     this.shopService
-      .getProducts(this.selectedBrands, this.selectedColors, this.selectedTypes)
+      .getProducts(this.selectedBrands, this.selectedColors, this.selectedTypes, this.selectedSortValue)
       .subscribe({
         next: (response) => (this.products = response.data),
         error: (error) => console.error(error),
@@ -207,7 +216,7 @@ export class ShopComponent {
 
   onTest1(onTest: string[]) {
     this.selectedBrands = onTest;
-    this.applyFilters()
+    this.applyFilters();
     console.log('🟥onTest1', onTest);
   }
 
@@ -217,13 +226,21 @@ export class ShopComponent {
 
   onTest3(onTest: string[]) {
     this.selectedTypes = onTest;
-    this.applyFilters()
+    this.applyFilters();
     // console.log('⬛onTest3', onTest);
   }
 
   onTest4(onTest: string[]) {
     this.selectedColors = onTest;
-    this.applyFilters()
+    this.applyFilters();
     console.log('🟪onTest4', onTest);
+  }
+
+  onSortChange(name: string, value: string) {
+    this.selectedSort = name;
+    this.selectedSortValue = value;
+    // console.log('🟨onSortChange', name, value);
+    // console.log('🟨onSortChange', this.selectedSortValue);
+    this.applyFilters()
   }
 }

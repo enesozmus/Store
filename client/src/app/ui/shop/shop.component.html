@@ -74,15 +74,14 @@
                   <!-- 2 -->
                   <div class="item-sorter">
                     <div class="label">
-                      <span class="mobile-hide">Sort by default</span>
-                      <div class="desktop-hide">Default</div>
+                      <span class="mobile-hide">Sort by {{this.selectedSort}}</span>
+                      <div class="desktop-hide">{{this.selectedSort}}</div>
                       <i class="ri-arrow-down-s-line"></i>
                     </div>
                     <ul>
-                      <li>Default</li>
-                      <li>Product Name</li>
-                      <li>Price</li>
-                      <li>Brand</li>
+                      @for(sort of this.sortOptions; track $index){
+                        <li (click)="onSortChange(sort.name, sort.value)">{{sort.name}}</li>
+                      }
                     </ul>
                   </div>
                   <!-- 3 -->

@@ -24,12 +24,15 @@ export class ShopService {
   //   return this.http.get<Pagination<Product>>(this.baseUrl + 'products');
   // }
 
-  getProducts(brands?: string[], colors?: string[], types?: string[]) {
+  getProducts(
+    brands?: string[],
+    colors?: string[],
+    types?: string[],
+    sort?: string
+  ) {
     let params = new HttpParams();
     // console.log('service');
-
     // console.log('service → brands', brands);
-
 
     if (brands && brands.length > 0) {
       params = params.append('brands', brands.join(','));
@@ -40,8 +43,13 @@ export class ShopService {
     if (types && types.length > 0) {
       params = params.append('types', types.join(','));
     }
+    if (sort) {
+      params = params.append('sort', sort);
+    }
 
-    return this.http.get<Pagination<Product>>(this.baseUrl + 'products', {params});
+    return this.http.get<Pagination<Product>>(this.baseUrl + 'products', {
+      params,
+    });
   }
 
   getBrands() {
