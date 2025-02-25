@@ -48,6 +48,11 @@ export class ShopComponent {
   typesArray: string[] = [];
   showMenu = false;
 
+  selectedBrands: string[] = [];
+  selectedColors: string[] = [];
+  // selectedSizes: string[] = [];
+  selectedTypes: string[] = [];
+
   // brands: {
   //   title: string;
   //   items: {
@@ -71,57 +76,67 @@ export class ShopComponent {
   constructor(private shopService: ShopService) {}
 
   ngOnInit(): void {
-    this.shopService.getProducts().subscribe({
-      next: (response) => {
-        this.products = response.data;
+    // this.shopService.getProducts().subscribe({
+    //   next: (response) => {
+    // this.products = response.data;
 
-        // for (let index = 0; index < this.products.length; index++) {
-        //   this.brands.push({
-        //     title: 'Brands',
-        //     items: [
-        //       {
-        //         name: this.products[index].brand,
-        //         label: this.products[index].brand.toLowerCase(),
-        //         count: 15,
-        //       },
-        //     ],
-        //   });
-        //   this.brands[0].items[index].name = this.products[index].brand;
-        //   this.brands[0].items[index].label =
-        //     this.products[index].brand.toLowerCase();
-        //   this.brands[0].items[index].count = 15;
-        // }
+    // for (let index = 0; index < this.products.length; index++) {
+    //   this.brands.push({
+    //     title: 'Brands',
+    //     items: [
+    //       {
+    //         name: this.products[index].brand,
+    //         label: this.products[index].brand.toLowerCase(),
+    //         count: 15,
+    //       },
+    //     ],
+    //   });
+    //   this.brands[0].items[index].name = this.products[index].brand;
+    //   this.brands[0].items[index].label =
+    //     this.products[index].brand.toLowerCase();
+    //   this.brands[0].items[index].count = 15;
+    // }
 
-        // for (let index = 0; index < this.products.length; index++) {
-        //   this.colors.push({
-        //     title: 'Colors',
-        //     items: [
-        //       {
-        //         name: this.products[index].color,
-        //         label: this.products[index].color.toLowerCase(),
-        //         count: 15,
-        //       },
-        //     ],
-        //   });
-        // }
+    // for (let index = 0; index < this.products.length; index++) {
+    //   this.colors.push({
+    //     title: 'Colors',
+    //     items: [
+    //       {
+    //         name: this.products[index].color,
+    //         label: this.products[index].color.toLowerCase(),
+    //         count: 15,
+    //       },
+    //     ],
+    //   });
+    // }
 
-        // for (let index = 0; index < this.products.length; index++) {
-        //   this.types.push({
-        //     title: 'Types',
-        //     items: [
-        //       {
-        //         name: this.products[index].type,
-        //         label: this.products[index].type.toLowerCase(),
-        //         count: 15,
-        //       },
-        //     ],
-        //   });
-        // }
-      },
-      // next: (response) => console.log('💚response', response.data),
-      error: (error) => console.error(error),
-      complete: () => console.log('💚complete'),
-    });
+    // for (let index = 0; index < this.products.length; index++) {
+    //   this.types.push({
+    //     title: 'Types',
+    //     items: [
+    //       {
+    //         name: this.products[index].type,
+    //         label: this.products[index].type.toLowerCase(),
+    //         count: 15,
+    //       },
+    //     ],
+    //   });
+    // }
+    //   },
+    //   next: (response) => console.log('💚response', response.data),
+    //   error: (error) => console.error(error),
+    //   complete: () => console.log('💚complete'),
+    // });
+
+    // this.shopService
+    //   .getProducts(this.selectedBrands, this.selectedColors, this.selectedTypes)
+    //   .subscribe({
+    //     next: (response) => (this.products = response.data),
+    //     error: (error) => console.error(error),
+    //     complete: () => console.log('getProducts(this.selectedBrands, this.selectedColors) 💚complete'),
+    //   });
+
+    this.applyFilters()
 
     this.shopService.getBrands().subscribe({
       next: (brands) => {
@@ -176,4 +191,39 @@ export class ShopComponent {
   }
 
   onOpenFilterMenu() {}
+
+  applyFilters() {
+    this.shopService
+      .getProducts(this.selectedBrands, this.selectedColors, this.selectedTypes)
+      .subscribe({
+        next: (response) => (this.products = response.data),
+        error: (error) => console.error(error),
+        complete: () =>
+          console.log(
+            'getProducts(this.selectedBrands, this.selectedColors) 💚complete'
+          ),
+      });
+  }
+
+  onTest1(onTest: string[]) {
+    this.selectedBrands = onTest;
+    this.applyFilters()
+    console.log('🟥onTest1', onTest);
+  }
+
+  onTest2(onTest: string[]) {
+    // console.log('🟦onTest2', onTest);
+  }
+
+  onTest3(onTest: string[]) {
+    this.selectedTypes = onTest;
+    this.applyFilters()
+    // console.log('⬛onTest3', onTest);
+  }
+
+  onTest4(onTest: string[]) {
+    this.selectedColors = onTest;
+    this.applyFilters()
+    console.log('🟪onTest4', onTest);
+  }
 }

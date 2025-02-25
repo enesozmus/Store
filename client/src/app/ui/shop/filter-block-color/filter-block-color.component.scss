@@ -56,10 +56,7 @@ input {
 }
 
 .bycolor label[for="bej-fuşya"]::before {
-  background: linear-gradient(
-    to right,
-    #DCFFBD,#CC86D1
-  );
+  background: linear-gradient(to right, #dcffbd, #cc86d1);
 }
 
 .bycolor label[for="fuşya"]::before {
@@ -110,6 +107,11 @@ input {
 .bycolor label[for="mint"]::before {
   background-color: #d2b7a6;
 }
+
+// .bycolor input:checked + label {
+//   background-color: transparent;
+//   border: 2px solid var(--dark-color);
+// }
 
 .bycolor input:checked + label {
   background-color: transparent;

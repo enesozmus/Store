@@ -1,4 +1,4 @@
-import { Component, Input } from '@angular/core';
+import { Component, EventEmitter, Input, Output } from '@angular/core';
 import { Filter } from '../../../shared/models/filter';
 
 @Component({
@@ -18,4 +18,18 @@ export class FilterBlockColorComponent {
   //   }[];
   // }[] = [];
   @Input() filters: Filter[] = [];
+
+  @Output() selectedColorsChange = new EventEmitter<string[]>();
+
+  selectedColors: string[] = [];
+
+  optionClicked(label: string) {
+    const index = this.selectedColors.indexOf(label);
+    if (index === -1) {
+      this.selectedColors.push(label);
+    } else {
+      this.selectedColors.splice(index, 1);
+    }
+    this.selectedColorsChange.emit(this.selectedColors);
+  }
 }

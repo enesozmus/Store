@@ -7,7 +7,7 @@
           <div class="row sidebar">
             <div class="filter" [class.active]="showMenu">
               <!-- 1 -->
-              <app-filter-block [filters]="brands" />
+              <app-filter-block [filters]="brands" (selectedBrandsChange)="onTest1($event)" />
               <!-- 2 -->
               <ul>
                 <li>
@@ -25,11 +25,11 @@
               </ul>
               <hr class="new1" />
               <!-- 3 -->
-              <app-filter-block [filters]="types" />
+              <app-filter-block [filters]="sizes" (selectedSizesChange)="onTest2($event)"/>
               <!-- 4 -->
-              <app-filter-block [filters]="sizes" />
+              <app-filter-block [filters]="types" (selectedTypesChange)="onTest3($event)"/>
               <!-- 5 -->
-              <app-filter-block-color [filters]="colors" />
+              <app-filter-block-color [filters]="colors" (selectedColorsChange)="onTest4($event)"/>
               <!-- 6 -->
               <div class="filter-block pricing">
                 <h4>Price</h4>

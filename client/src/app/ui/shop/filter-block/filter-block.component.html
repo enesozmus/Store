@@ -5,7 +5,7 @@
     @for(item of filter['items']; track $index;) {
       <li>
         <input type="checkbox" name="checkbox" id="{{ item.label }}" />
-        <label for="{{ item.label }}">
+        <label for="{{ item.label }}" (click)="optionClicked(filter.title, item.label)">
           <span class="checked"></span>
           <span>{{ item.name }}</span>
         </label>

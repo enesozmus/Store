@@ -4,8 +4,8 @@
     <ul class="bycolor flexitem">
     @for(item of filter.items; track $index;){
       <li>
-        <input type="radio" name="color" [id]="item.label" />
-        <label [for]="item.label" class="circle"></label>
+        <input type="checkbox" name="color" [id]="item.label" />
+        <label [for]="item.label" class="circle" (click)="optionClicked(item.label)"></label>
       </li>
     }
     </ul>
