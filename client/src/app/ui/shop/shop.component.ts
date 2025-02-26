@@ -10,6 +10,7 @@ import { ShopService } from '../../services/shop.service';
 import { Product } from '../../shared/models/product';
 import { Filter } from '../../shared/models/filter';
 import { Subscription } from 'rxjs';
+import { ShopParams } from '../../shared/models/shopParams';
 
 @Component({
   selector: 'app-shop',
@@ -25,17 +26,18 @@ import { Subscription } from 'rxjs';
 })
 export class ShopComponent {
   products: Product[] = [];
+  shopParams = new ShopParams();
 
   count: number = 0;
   pageSize: number = 0;
   pageIndex: number = 0;
 
   numberOfPages: number = 0;
-  selectedPageIndex: number = 1;
+  // selectedPageIndex: number = 1;
   pageSizeOptions: number[] = [3, 6, 9, 12, 15, 18, 27];
-  selectedPageSize: number = 9;
+  // selectedPageSize: number = 9;
 
-  selectedSearch: string = '';
+  // selectedSearch: string = '';
 
   brands: Filter[] = [];
   colors: Filter[] = [];
@@ -67,13 +69,13 @@ export class ShopComponent {
   typesArray: string[] = [];
   showMenu = false;
 
-  selectedBrands: string[] = [];
-  selectedColors: string[] = [];
-  selectedSizes: string[] = [];
-  selectedTypes: string[] = [];
+  // selectedBrands: string[] = [];
+  // selectedColors: string[] = [];
+  // selectedSizes: string[] = [];
+  // selectedTypes: string[] = [];
 
   selectedSort: string = 'Default';
-  selectedSortValue: string = 'default';
+  // selectedSortValue: string = 'default';
   sortOptions = [
     { name: 'Default', value: 'default' },
     { name: 'Alphabetical', value: 'orderByName' },
@@ -231,15 +233,16 @@ export class ShopComponent {
 
   applyFilters() {
     this.shopService
-      .getProducts(
-        this.selectedBrands,
-        this.selectedColors,
-        this.selectedTypes,
-        this.selectedSortValue,
-        this.selectedPageSize,
-        this.selectedPageIndex,
-        this.selectedSearch
-      )
+      // .getProducts(
+      //   this.selectedBrands,
+      //   this.selectedColors,
+      //   this.selectedTypes,
+      //   this.selectedSortValue,
+      //   this.selectedPageSize,
+      //   this.selectedPageIndex,
+      //   this.selectedSearch
+      // )
+      .getProducts(this.shopParams)
       .subscribe({
         next: (response) => {
           this.products = response.data;
@@ -255,58 +258,73 @@ export class ShopComponent {
       });
   }
 
-  onTest1(onTest: string[]) {
-    this.selectedBrands = onTest;
+  onTest1(selectedBrands: string[]) {
+    // this.selectedBrands = selectedBrands;
+    this.shopParams.brands = selectedBrands;
     this.applyFilters();
-    console.log('🟥onTest1', onTest);
+    // console.log('🟥onTest1', selectedBrands);
   }
 
-  onTest2(onTest: string[]) {
-    // console.log('🟦onTest2', onTest);
+  onTest2(selectedSizes: string[]) {
+    // console.log('🟦onTest2', selectedSizes);
   }
 
-  onTest3(onTest: string[]) {
-    this.selectedTypes = onTest;
+  onTest3(selectedTypes: string[]) {
+    // this.selectedTypes = selectedTypes;
+    this.shopParams.types = selectedTypes;
     this.applyFilters();
-    // console.log('⬛onTest3', onTest);
+    // console.log('⬛onTest3', selectedTypes);
   }
 
-  onTest4(onTest: string[]) {
-    this.selectedColors = onTest;
+  onTest4(selectedColors: string[]) {
+    // this.selectedColors = selectedColors;
+    this.shopParams.colors = selectedColors;
     this.applyFilters();
-    console.log('🟪onTest4', onTest);
+    // console.log('🟪onTest4', selectedColors);
   }
 
   onSortChange(name: string, value: string) {
     this.selectedSort = name;
-    this.selectedSortValue = value;
+    // this.selectedSortValue = value;
+    this.shopParams.sort = value;
+    // this.shopParams.pageIndex = 1;
     // console.log('🟨onSortChange', name, value);
     // console.log('🟨onSortChange', this.selectedSortValue);
     this.applyFilters();
   }
 
   onSetIndex(index: number) {
-    this.selectedPageIndex = index + 1;
-    console.log('selectedIndex after → ', this.selectedPageIndex);
+    // this.selectedPageIndex = index + 1;
+    this.shopParams.pageIndex = index + 1;
+    // console.log('selectedIndex after → ', this.selectedPageIndex);
     this.applyFilters();
   }
 
   onSetIndexIncrease() {
-    if (this.selectedPageIndex + 1 <= this.numberOfPages) {
-      this.selectedPageIndex++;
+    // if (this.selectedPageIndex + 1 <= this.numberOfPages) {
+    //   this.selectedPageIndex++;
+    //   this.applyFilters();
+    // }
+    if (this.shopParams.pageIndex + 1 <= this.numberOfPages) {
+      this.shopParams.pageIndex++;
       this.applyFilters();
     }
   }
 
   onSetIndexDecrease() {
-    if (this.selectedPageIndex != 1) {
-      this.selectedPageIndex--;
+    // if (this.selectedPageIndex != 1) {
+    //   this.selectedPageIndex--;
+    //   this.applyFilters();
+    // }
+    if (this.shopParams.pageIndex != 1) {
+      this.shopParams.pageIndex--;
       this.applyFilters();
     }
   }
 
   onPageSizeChange(size: number) {
-    this.selectedPageSize = size;
+    // this.selectedPageSize = size;
+    this.shopParams.pageSize = size;
     this.applyFilters();
   }
 
@@ -314,8 +332,13 @@ export class ShopComponent {
     // console.log('🟥🟥🟥🟥🟥🟥here');
     // console.log('🟥3.ShopComponent this.selectedSearch→', this.selectedSearch);
     // console.log('🟥3.ShopComponent this.shopService.selectedSearch→', this.shopService.selectedSearch);
-    this.selectedSearch = this.shopService.selectedSearch;
-    this.selectedPageIndex = 1;
+
+    // this.selectedSearch = this.shopService.selectedSearch;
+    // this.selectedPageIndex = 1;
+
+    this.shopParams.search = this.shopService.selectedSearch;
+    this.shopParams.pageIndex = 1;
+
     // console.log('🟥3.ShopComponent this.selectedSearch→', this.selectedSearch);
     // console.log('🟥3.ShopComponent this.shopService.selectedSearch→', this.shopService.selectedSearch);
     this.applyFilters();
