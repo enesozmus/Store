@@ -3,6 +3,7 @@ import { Injectable } from '@angular/core';
 
 import { Pagination } from '../shared/models/pagination';
 import { Product } from '../shared/models/product';
+import { Subject } from 'rxjs';
 
 @Injectable({
   providedIn: 'root',
@@ -14,6 +15,9 @@ export class ShopService {
   // products: Product[] = [];
 
   // brands: Filter[] = [];
+  
+  onButtonClick = new Subject();
+  selectedSearch: string = '';
 
   /**
    * 🔴
@@ -30,7 +34,8 @@ export class ShopService {
     types?: string[],
     sort?: string,
     pageSize?: number,
-    pageIndex?: number
+    pageIndex?: number,
+    search?: string
   ) {
     let params = new HttpParams();
     // console.log('service');
@@ -54,6 +59,13 @@ export class ShopService {
     }
     if (pageIndex) {
       params = params.append('pageIndex', pageIndex);
+    }
+
+    if (search) {
+      // search = this.selectedSearch;
+      // console.log('🟦🟦🔵2ShopService →', search);
+      // console.log('🟦🟦🔵2this.selectedSearch →', this.selectedSearch);
+      params = params.append('search', search);
     }
 
     return this.http.get<Pagination<Product>>(this.baseUrl + 'products', {

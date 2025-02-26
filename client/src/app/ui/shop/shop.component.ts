@@ -1,4 +1,5 @@
 import { Component } from '@angular/core';
+import { FormsModule } from '@angular/forms';
 
 import { FilterBlockColorComponent } from './filter-block-color/filter-block-color.component';
 import { FilterBlockComponent } from './filter-block/filter-block.component';
@@ -8,11 +9,17 @@ import { ShopService } from '../../services/shop.service';
 
 import { Product } from '../../shared/models/product';
 import { Filter } from '../../shared/models/filter';
+import { Subscription } from 'rxjs';
 
 @Component({
   selector: 'app-shop',
   standalone: true,
-  imports: [FilterBlockComponent, FilterBlockColorComponent, ShopItemComponent],
+  imports: [
+    FilterBlockComponent,
+    FilterBlockColorComponent,
+    ShopItemComponent,
+    FormsModule,
+  ],
   templateUrl: './shop.component.html',
   styleUrl: './shop.component.scss',
 })
@@ -27,6 +34,8 @@ export class ShopComponent {
   selectedPageIndex: number = 1;
   pageSizeOptions: number[] = [3, 6, 9, 12, 15, 18, 27];
   selectedPageSize: number = 9;
+
+  selectedSearch: string = '';
 
   brands: Filter[] = [];
   colors: Filter[] = [];
@@ -92,7 +101,14 @@ export class ShopComponent {
   // },
   // ];
 
-  constructor(private shopService: ShopService) {}
+  private listenSubscriptionOnButtonClick: Subscription;
+
+  constructor(private shopService: ShopService) {
+    this.listenSubscriptionOnButtonClick =
+      this.shopService.onButtonClick.subscribe(() => {
+        this.onSearchChange();
+      });
+  }
 
   ngOnInit(): void {
     // console.log(this.selectedPageIndex);
@@ -221,7 +237,8 @@ export class ShopComponent {
         this.selectedTypes,
         this.selectedSortValue,
         this.selectedPageSize,
-        this.selectedPageIndex
+        this.selectedPageIndex,
+        this.selectedSearch
       )
       .subscribe({
         next: (response) => {
@@ -231,7 +248,7 @@ export class ShopComponent {
           this.pageIndex = response.pageIndex;
           this.numberOfPages = Math.ceil(response.count / response.pageSize);
           // console.log(response.count / response.pageSize);
-          console.log('numberOfPages', this.numberOfPages);
+          // console.log('numberOfPages', this.numberOfPages);
         },
         error: (error) => console.error(error),
         complete: () => console.log(''),
@@ -291,5 +308,24 @@ export class ShopComponent {
   onPageSizeChange(size: number) {
     this.selectedPageSize = size;
     this.applyFilters();
+  }
+
+  onSearchChange() {
+    // console.log('🟥🟥🟥🟥🟥🟥here');
+    // console.log('🟥3.ShopComponent this.selectedSearch→', this.selectedSearch);
+    // console.log('🟥3.ShopComponent this.shopService.selectedSearch→', this.shopService.selectedSearch);
+    this.selectedSearch = this.shopService.selectedSearch;
+    this.selectedPageIndex = 1;
+    // console.log('🟥3.ShopComponent this.selectedSearch→', this.selectedSearch);
+    // console.log('🟥3.ShopComponent this.shopService.selectedSearch→', this.shopService.selectedSearch);
+    this.applyFilters();
+  }
+
+  ngOnDestroy() {
+    this.listenSubscriptionOnButtonClick.unsubscribe();
+    // this.listenSubscriptionGetBrands.unsubscribe();
+    // this.listenSubscriptionGetColors.unsubscribe();
+    // this.listenSubscriptionGetTypes.unsubscribe();
+    // this.listenSubscriptionGetProducts.unsubscribe();
   }
 }
