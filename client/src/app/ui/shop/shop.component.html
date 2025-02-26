@@ -1,3 +1,4 @@
+@if(products) {
 <div class="shop">
   <div class="container">
     <div class="wrapper">
@@ -7,7 +8,10 @@
           <div class="row sidebar">
             <div class="filter" [class.active]="showMenu">
               <!-- 1 -->
-              <app-filter-block [filters]="brands" (selectedBrandsChange)="onTest1($event)" />
+              <app-filter-block
+                [filters]="brands"
+                (selectedBrandsChange)="onTest1($event)"
+              />
               <!-- 2 -->
               <ul>
                 <li>
@@ -25,11 +29,20 @@
               </ul>
               <hr class="new1" />
               <!-- 3 -->
-              <app-filter-block [filters]="sizes" (selectedSizesChange)="onTest2($event)"/>
+              <app-filter-block
+                [filters]="sizes"
+                (selectedSizesChange)="onTest2($event)"
+              />
               <!-- 4 -->
-              <app-filter-block [filters]="types" (selectedTypesChange)="onTest3($event)"/>
+              <app-filter-block
+                [filters]="types"
+                (selectedTypesChange)="onTest3($event)"
+              />
               <!-- 5 -->
-              <app-filter-block-color [filters]="colors" (selectedColorsChange)="onTest4($event)"/>
+              <app-filter-block-color
+                [filters]="colors"
+                (selectedColorsChange)="onTest4($event)"
+              />
               <!-- 6 -->
               <div class="filter-block pricing">
                 <h4>Price</h4>
@@ -74,34 +87,48 @@
                   <!-- 2 -->
                   <div class="pagination">
                     <a (click)="onSetIndexDecrease()">&laquo;</a>
-                    @for(item of [].constructor(numberOfPages); track $index; let i = $index){
-                      <a [class.active]="this.shopParams.pageIndex - 1 === i" (click)="onSetIndex(i)">{{i+1}}</a>
+                    @for(item of [].constructor(numberOfPages); track $index;
+                    let i = $index){
+                    <a
+                      [class.active]="this.shopParams.pageIndex - 1 === i"
+                      (click)="onSetIndex(i)"
+                      >{{ i + 1 }}</a
+                    >
                     }
                     <a (click)="onSetIndexIncrease()">&raquo;</a>
                   </div>
                   <!-- 3 -->
                   <div class="item-sorter">
                     <div class="label">
-                      <span class="mobile-hide">Sort by {{this.selectedSort}}</span>
-                      <div class="desktop-hide">{{this.selectedSort}}</div>
+                      <span class="mobile-hide"
+                        >Sort by {{ this.selectedSort }}</span
+                      >
+                      <div class="desktop-hide">{{ this.selectedSort }}</div>
                       <i class="ri-arrow-down-s-line"></i>
                     </div>
                     <ul>
                       @for(sort of this.sortOptions; track $index){
-                        <li (click)="onSortChange(sort.name, sort.value)">{{sort.name}}</li>
+                      <li (click)="onSortChange(sort.name, sort.value)">
+                        {{ sort.name }}
+                      </li>
                       }
                     </ul>
                   </div>
                   <!-- 4 -->
                   <div class="item-options">
                     <div class="label">
-                      <span class="mobile-hide">Show {{this.shopParams.pageSize}} per page</span>
-                      <div class="desktop-hide">{{this.shopParams.pageSize}}</div>
+                      <span class="mobile-hide"
+                        >Show {{ this.shopParams.pageSize }} per page</span
+                      >
+                      <div class="desktop-hide">
+                        {{ this.shopParams.pageSize }}
+                      </div>
                       <i class="ri-arrow-down-s-line"></i>
                     </div>
                     <ul>
-                      @for(item of pageSizeOptions; track $index; let i = $index){
-                        <li (click)="onPageSizeChange(item)">{{item}}</li>
+                      @for(item of pageSizeOptions; track $index; let i =
+                      $index){
+                      <li (click)="onPageSizeChange(item)">{{ item }}</li>
                       }
                     </ul>
                   </div>
@@ -122,3 +149,4 @@
     </div>
   </div>
 </div>
+}

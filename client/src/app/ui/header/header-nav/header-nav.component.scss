@@ -35,6 +35,12 @@ nav .fly-item {
   border-radius: 50%;
 }
 
+a {
+  &.active {
+    color: #777;
+  }
+}
+
 @media only screen and (min-width: 992px) {
   .header-nav {
     padding: 0;

@@ -7,17 +7,24 @@
     <!-- 2 -->
     <div class="left flexitem">
       <!-- 1 -->
-      <div class="logo">
+      <div routerLink="/" class="logo">
         <a><span class="circle"></span>.Store</a>
       </div>
       <!-- 2 -->
       <nav class="mobile-hide">
         <ul class="flexitem second-links">
           <!-- 1 -->
-          <li><a>Home</a></li>
+          <li>
+            <a
+              routerLink="/"
+              routerLinkActive="active"
+              [routerLinkActiveOptions]="{ exact: true }"
+              >Home</a
+            >
+          </li>
           <!-- 2 -->
           <li>
-            <a>Shop</a>
+            <a routerLink="/shop" routerLinkActive="active">Shop</a>
           </li>
           <!-- 3 -->
           <li class="has-child">

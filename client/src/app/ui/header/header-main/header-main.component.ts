@@ -1,4 +1,5 @@
 import { Component } from '@angular/core';
+import { NavigationEnd, NavigationStart, Router } from '@angular/router';
 import { FormsModule } from '@angular/forms';
 import { ShopService } from '../../../services/shop.service';
 
@@ -15,19 +16,25 @@ export class HeaderMainComponent {
   menuSwitch = false;
   search: string = '';
 
-  constructor(private shopService: ShopService) {}
-
-  ngOnInit() {
-    console.log('HeaderMainComponent →', window.location.href);
-    if (
-      window.location.href === 'http://localhost:4200' ||
-      window.location.href === 'http://localhost:4200/' ||
-      window.location.href === 'http://localhost:4200/home'
-    ) {
-      this.dptMenu = true;
-    } else {
-      this.showMenuButton = true;
-    }
+  constructor(private shopService: ShopService, private router: Router) {
+    router.events.subscribe((x) => {
+      if (x instanceof NavigationStart) {
+        // console.log('start');
+      }
+      if (x instanceof NavigationEnd) {
+        // console.log('end');
+        if (
+          window.location.href === 'http://localhost:4200' ||
+          window.location.href === 'http://localhost:4200/' ||
+          window.location.href === 'http://localhost:4200/home'
+        ) {
+          this.dptMenu = true;
+        } else {
+          this.dptMenu = false;
+          this.showMenuButton = true;
+        }
+      }
+    });
   }
 
   onToggleMenu() {
