@@ -1,5 +1,5 @@
 @for(item of items; track item.id) {
-  <div (click)="navigate(item.id)" class="item">
+  <div (click)="navigate(item.id)" class="item" routerLink="/shop/{{ item.id }}">
     <!-- 1 -->
     <div class="media">
       <!-- 1 -->

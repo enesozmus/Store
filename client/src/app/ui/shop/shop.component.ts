@@ -191,7 +191,6 @@ export class ShopComponent {
         }
       },
       error: (error) => console.error(error),
-      complete: () => console.log(''),
     });
 
     this.shopService.getColors().subscribe({
@@ -208,7 +207,6 @@ export class ShopComponent {
         }
       },
       error: (error) => console.error(error),
-      complete: () => console.log(''),
     });
 
     this.shopService.getTypes().subscribe({
@@ -225,7 +223,6 @@ export class ShopComponent {
         }
       },
       error: (error) => console.error(error),
-      complete: () => console.log(''),
     });
   }
 
@@ -254,7 +251,6 @@ export class ShopComponent {
           // console.log('numberOfPages', this.numberOfPages);
         },
         error: (error) => console.error(error),
-        complete: () => console.log(''),
       });
   }
 

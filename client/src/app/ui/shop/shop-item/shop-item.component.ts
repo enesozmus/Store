@@ -1,5 +1,5 @@
 import { Component, Input } from '@angular/core';
-import { Router } from '@angular/router';
+import { Router, RouterLink } from '@angular/router';
 import { Product } from '../../../shared/models/product';
 
 import { HoverableComponent } from '../../../shared/components/hoverable/hoverable.component';
@@ -15,6 +15,7 @@ import { PriceComponent } from '../../../shared/components/price/price.component
     DiscountComponent,
     RatingComponent,
     PriceComponent,
+    RouterLink,
   ],
   templateUrl: './shop-item.component.html',
   styleUrl: './shop-item.component.scss',
