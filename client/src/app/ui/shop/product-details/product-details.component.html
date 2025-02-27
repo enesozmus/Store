@@ -1,11 +1,543 @@
 @if(product) {
-<h1>{{ product.name }}</h1>
-<h1>-</h1>
-<h1>{{ product.brand }}</h1>
-<h1>-</h1>
-<h1>{{ product.color }}</h1>
-<h1>-</h1>
-<h1>{{ product.price }}</h1>
-<h1>-</h1>
-<h1>{{ product.pictureUrl }}</h1>
+<div class="single-product">
+  <div class="container">
+    <div class="wrapper">
+      <!-- 1 -->
+      <div class="breadcrumb">
+        <ul class="flexitem">
+          <li><a routerLink="/">Home</a></li>
+          <li><a routerLink="/shop">Shop</a></li>
+          <li><a routerLink="/shop">Women</a></li>
+          <li><a routerLink="/shop">Sweaters</a></li>
+          <li>{{ product.name }}</li>
+        </ul>
+      </div>
+      <!-- 2 -->
+      <div class="column">
+        <div class="products one">
+          <div class="flexwrap">
+            <!-- 1 -->
+            <div class="row">
+              <div class="item is_sticky">
+                <!-- 1 -->
+                <div class="price">
+                  <span class="discount">32%<br />OFF</span>
+                </div>
+                <!-- 2 -->
+                <div class="big-image">
+                  <swiper-container
+                    navigation="true"
+                    pagination="true"
+                    pagination-type="progressbar"
+                    thumbs-swiper=".my-thumbs"
+                    style="
+                      --swiper-navigation-color: #000;
+                      --swiper-pagination-color: #000;
+                    "
+                  >
+                    <!-- 1 -->
+                    <swiper-slide>
+                      <div class="image-show">
+                        <a>
+                          <!-- <img src="/images/shoes/nike-star-run-1.png" /> -->
+                          <!-- <img [src]="products[productId - 1].PictureUrl" /> -->
+                          <img [src]="product.pictureUrl" />
+                        </a>
+                      </div>
+                    </swiper-slide>
+                    <!-- 2 -->
+                    <swiper-slide>
+                      <div class="image-show">
+                        <a>
+                          <!-- <img src="/images/shoes/nike-star-run-2.png" /> -->
+                          <img [src]="product.pictureUrl" />
+                        </a>
+                      </div>
+                    </swiper-slide>
+                    <!-- 3 -->
+                    <swiper-slide>
+                      <div class="image-show">
+                        <a>
+                          <!-- <img src="./images/shoes/nike-star-run-3.png" /> -->
+                          <img [src]="product.pictureUrl" />
+                        </a>
+                      </div>
+                    </swiper-slide>
+                    <!-- 4 -->
+                    <swiper-slide>
+                      <div class="image-show">
+                        <a>
+                          <!-- <img src="/images/shoes/nike-star-run-4.png" /> -->
+                          <img [src]="product.pictureUrl" />
+                        </a>
+                      </div>
+                    </swiper-slide>
+                    <!-- 5 -->
+                    <swiper-slide>
+                      <div class="image-show">
+                        <a>
+                          <!-- <img src="/images/shoes/nike-star-run-5.png" /> -->
+                          <img [src]="product.pictureUrl" />
+                        </a>
+                      </div>
+                    </swiper-slide>
+                    <!-- 6 -->
+                    <swiper-slide>
+                      <div class="image-show">
+                        <a>
+                          <!-- <img src="/images/shoes/nike-star-run-6.png" /> -->
+                          <img [src]="product.pictureUrl" />
+                        </a>
+                      </div>
+                    </swiper-slide>
+                  </swiper-container>
+                </div>
+                <!-- 3 -->
+                <div class="small-image">
+                  <ul class="flexitem">
+                    <swiper-container
+                      space-between="10"
+                      slides-per-view="4"
+                      free-mode="true"
+                      watch-slides-progress="true"
+                      class="my-thumbs"
+                    >
+                      <!-- 1 -->
+                      <swiper-slide>
+                        <li class="thumbnail-show">
+                          <!-- <img src="/images/shoes/nike-star-run-1.png" alt="" /> -->
+                          <img [src]="product.pictureUrl" />
+                        </li>
+                      </swiper-slide>
+                      <!-- 2 -->
+                      <swiper-slide>
+                        <li class="thumbnail-show">
+                          <!-- <img src="/images/shoes/nike-star-run-2.png" alt="" /> -->
+                          <img [src]="product.pictureUrl" />
+                        </li>
+                      </swiper-slide>
+                      <!-- 3 -->
+                      <swiper-slide>
+                        <li class="thumbnail-show">
+                          <!-- <img src="/images/shoes/nike-star-run-3.png" alt="" /> -->
+                          <img [src]="product.pictureUrl" />
+                        </li>
+                      </swiper-slide>
+                      <!-- 4 -->
+                      <swiper-slide>
+                        <li class="thumbnail-show">
+                          <!-- <img src="/images/shoes/nike-star-run-4.png" alt="" /> -->
+                          <img [src]="product.pictureUrl" />
+                        </li>
+                      </swiper-slide>
+                      <!-- 5 -->
+                      <swiper-slide>
+                        <li class="thumbnail-show">
+                          <!-- <img src="/images/shoes/nike-star-run-5.png" alt="" /> -->
+                          <img [src]="product.pictureUrl" />
+                        </li>
+                      </swiper-slide>
+                      <!-- 6 -->
+                      <swiper-slide>
+                        <li class="thumbnail-show">
+                          <!-- <img src="/images/shoes/nike-star-run-6.png" alt="" /> -->
+                          <img [src]="product.pictureUrl" />
+                        </li>
+                      </swiper-slide>
+                    </swiper-container>
+                  </ul>
+                </div>
+              </div>
+            </div>
+            <!-- 2 -->
+            <div class="row">
+              <div class="item">
+                <!-- 1 -->
+                <h1>{{ product.name }}</h1>
+                <!-- 2 -->
+                <div class="content">
+                  <!-- 1 -->
+                  <app-rating
+                    [rating]="2.251"
+                    [addRating]="true"
+                    [addReview]="true"
+                  />
+                  <!-- 2 -->
+                  <div class="stock-sku">
+                    <span class="available">In Stock</span>
+                    <span class="sku mini-text">SKU-881</span>
+                  </div>
+                  <!-- 3 -->
+                  <div class="price">
+                    <span class="current">{{ product.price }}</span>
+                    <span class="normal">$2.999,90</span>
+                  </div>
+                  <!-- 4 -->
+                  <div class="colors">
+                    <p>Colors :</p>
+                    <div class="variant">
+                      <form action="">
+                        <p>
+                          <input type="radio" name="color" id="cogrey" />
+                          <label for="cogrey" class="circle"></label>
+                        </p>
+                        <p>
+                          <input type="radio" name="color" id="coblue" />
+                          <label for="coblue" class="circle"></label>
+                        </p>
+                        <p>
+                          <input type="radio" name="color" id="cogreen" />
+                          <label for="cogreen" class="circle"></label>
+                        </p>
+                      </form>
+                    </div>
+                  </div>
+                  <!-- 5 -->
+                  <div class="sizes">
+                    <p>Sizes :</p>
+                    <div class="variant">
+                      <form action="">
+                        <p>
+                          <input type="radio" name="size" id="size-40" />
+                          <label for="size-40" class="circle">
+                            <span>40</span>
+                          </label>
+                        </p>
+                        <p>
+                          <input type="radio" name="size" id="size-41" />
+                          <label for="size-41" class="circle">
+                            <span>41</span>
+                          </label>
+                        </p>
+                        <p>
+                          <input type="radio" name="size" id="size-42" />
+                          <label for="size-42" class="circle">
+                            <span>42</span>
+                          </label>
+                        </p>
+                        <p>
+                          <input type="radio" name="size" id="size-43" />
+                          <label for="size-43" class="circle">
+                            <span>43</span>
+                          </label>
+                        </p>
+                      </form>
+                    </div>
+                  </div>
+                  <!-- 6 -->
+                  <div class="actions">
+                    <!-- 1 -->
+                    <div class="qty-control flexitem">
+                      <button
+                        class="minus circle"
+                        (click)="onHandleDecreaseByOne()"
+                      >
+                        -
+                      </button>
+                      <input type="text" value="1" />
+                      <button
+                        class="plus circle"
+                        (click)="onHandleIncreaseByOne()"
+                      >
+                        +
+                      </button>
+                    </div>
+                    <!-- 2 -->
+                    <div class="button-cart">
+                      <button
+                        class="primary-button"
+                        (click)="onHandleAddToCart()"
+                      >
+                        Add to cart
+                      </button>
+                    </div>
+                    <!-- 3 -->
+                    <div class="wish-share">
+                      <ul class="flexitem second-links">
+                        <li>
+                          <a>
+                            <span class="icon-large">
+                              <i class="ri-heart-line"></i>
+                            </span>
+                            <span>Wishlist</span>
+                          </a>
+                        </li>
+                        <li>
+                          <a>
+                            <span class="icon-large">
+                              <i class="ri-share-line"></i>
+                            </span>
+                            <span>Share</span>
+                          </a>
+                        </li>
+                      </ul>
+                    </div>
+                  </div>
+                  <!-- 7 -->
+                  <div class="description collapse">
+                    <ul>
+                      <!-- 1 -->
+                      <li class="has-child">
+                        <a
+                          class="icon-small"
+                          (click)="onOpenInformation()"
+                          [class.active]="information"
+                          >Information</a
+                        >
+                        <ul class="content" [class.active]="information">
+                          <li><span>Brands</span><span>Nike</span></li>
+                          <li><span>Activity</span><span>Running</span></li>
+                          <li><span>Material</span><span>Fleece</span></li>
+                          <li><span>Gender</span><span>Men</span></li>
+                        </ul>
+                      </li>
+                      <!-- 2 -->
+                      <li class="has-child">
+                        <a
+                          class="icon-small"
+                          (click)="onOpenDetail()"
+                          [class.active]="detail"
+                          >Details</a
+                        >
+                        <div class="content" [class.active]="detail">
+                          <p>
+                            Lorem ipsum dolor sit amet consectetur, adipisicing
+                            elit. Minima laborum possimus quo. Excepturi,
+                            inventore voluptatum!
+                          </p>
+                          <p>
+                            Lorem ipsum dolor sit amet consectetur adipisicing
+                            elit. Sit, a laudantium accusantium eum impedit nisi
+                            laboriosam ex adipisci corrupti porro debitis,
+                            reprehenderit quos minus facere.
+                          </p>
+                        </div>
+                      </li>
+                      <!-- 3 -->
+                      <li class="has-child">
+                        <a
+                          class="icon-small"
+                          (click)="onOpenCustom()"
+                          [class.active]="custom"
+                          >Custom</a
+                        >
+                        <div class="content" [class.active]="custom">
+                          <table>
+                            <thead>
+                              <tr>
+                                <th>Size</th>
+                                <th>
+                                  Bust <span class="mini-text">(cm)</span>
+                                </th>
+                                <th>
+                                  Waist <span class="mini-text">(cm)</span>
+                                </th>
+                                <th>Hip <span class="mini-text">(cm)</span></th>
+                              </tr>
+                            </thead>
+                            <tbody>
+                              <tr>
+                                <td>XS</td>
+                                <td>82,5</td>
+                                <td>62</td>
+                                <td>87,5</td>
+                              </tr>
+                              <tr>
+                                <td>S</td>
+                                <td>85</td>
+                                <td>63,5</td>
+                                <td>89</td>
+                              </tr>
+                              <tr>
+                                <td>M</td>
+                                <td>87,5</td>
+                                <td>67,5</td>
+                                <td>93</td>
+                              </tr>
+                              <tr>
+                                <td>L</td>
+                                <td>90</td>
+                                <td>72,5</td>
+                                <td>98</td>
+                              </tr>
+                              <tr>
+                                <td>XL</td>
+                                <td>93</td>
+                                <td>77,5</td>
+                                <td>103</td>
+                              </tr>
+                            </tbody>
+                          </table>
+                        </div>
+                      </li>
+                      <!-- 4 -->
+                      <li class="has-child">
+                        <!-- 1 -->
+                        <a
+                          class="icon-small"
+                          (click)="onOpenReview()"
+                          [class.active]="review"
+                        >
+                          Reviews
+                          <span class="mini-text">2.2k</span>
+                        </a>
+                        <!-- 2 -->
+                        <div class="content" [class.active]="review">
+                          <div class="reviews">
+                            <!-- 1 -->
+                            <h4>Customers Reviews</h4>
+                            <!-- 2 -->
+                            <div class="review-block">
+                              <!-- 1 -->
+                              <div class="review-block-head">
+                                <div class="flexitem">
+                                  <span class="rate-sum">4.9</span>
+                                  <span>2,251 Reviews</span>
+                                </div>
+                                <a class="secondary-button"> Write review </a>
+                              </div>
+                              <!-- 2 -->
+                              <div class="review-block-body">
+                                <ul>
+                                  <!-- 1 -->
+                                  <li class="item">
+                                    <!-- 1 -->
+                                    <div class="review-form">
+                                      <p class="person">Review by Sarah</p>
+                                      <p class="mini-text">On 7/7/22</p>
+                                    </div>
+                                    <!-- 2 -->
+                                    <app-rating />
+                                    <!-- 3 -->
+                                    <div class="review-title">
+                                      <p>Awesome product!</p>
+                                    </div>
+                                    <!-- 4 -->
+                                    <div class="review-text">
+                                      <p>
+                                        Lorem ipsum dolor sit amet consectetur
+                                        adipisicing elit. Delectus repellendus
+                                        hic neque? Quaerat esse rem eum nihil
+                                        eius omnis qui?
+                                      </p>
+                                    </div>
+                                  </li>
+                                  <!-- 2 -->
+                                  <li class="item">
+                                    <!-- 1 -->
+                                    <div class="review-form">
+                                      <p class="person">Review by David</p>
+                                      <p class="mini-text">On 1/7/22</p>
+                                    </div>
+                                    <!-- 2 -->
+                                    <app-rating />
+                                    <!-- 3 -->
+                                    <div class="review-title">
+                                      <p>Awesome product!</p>
+                                    </div>
+                                    <!-- 4 -->
+                                    <div class="review-text">
+                                      <p>
+                                        Lorem ipsum dolor sit amet consectetur
+                                        adipisicing elit. Delectus repellendus
+                                        hic neque? Quaerat esse rem eum nihil
+                                        eius omnis qui?
+                                      </p>
+                                    </div>
+                                  </li>
+                                </ul>
+                                <div class="second-links">
+                                  <a class="view-all">
+                                    View all reviews
+                                    <i class="ri-arrow-right-line"></i>
+                                  </a>
+                                </div>
+                              </div>
+                              <!-- 3 -->
+                              <div id="review-form" class="review-form">
+                                <h4>Write a review</h4>
+                                <div class="rating">
+                                  <p>Are you satisfied enough?</p>
+                                  <div class="rate-this">
+                                    <input
+                                      type="radio"
+                                      name="rating"
+                                      id="star5"
+                                    />
+                                    <label for="star5"
+                                      ><i class="ri-star-fill"></i
+                                    ></label>
+
+                                    <input
+                                      type="radio"
+                                      name="rating"
+                                      id="star4"
+                                    />
+                                    <label for="star4"
+                                      ><i class="ri-star-fill"></i
+                                    ></label>
+
+                                    <input
+                                      type="radio"
+                                      name="rating"
+                                      id="star3"
+                                    />
+                                    <label for="star3"
+                                      ><i class="ri-star-fill"></i
+                                    ></label>
+
+                                    <input
+                                      type="radio"
+                                      name="rating"
+                                      id="star2"
+                                    />
+                                    <label for="star2"
+                                      ><i class="ri-star-fill"></i
+                                    ></label>
+
+                                    <input
+                                      type="radio"
+                                      name="rating"
+                                      id="star1"
+                                    />
+                                    <label for="star1"
+                                      ><i class="ri-star-fill"></i
+                                    ></label>
+                                  </div>
+                                </div>
+                                <form action="">
+                                  <p>
+                                    <label>Name</label>
+                                    <input type="text" />
+                                  </p>
+                                  <p>
+                                    <label>Summary</label>
+                                    <input type="text" />
+                                  </p>
+                                  <p>
+                                    <label>Review</label>
+                                    <textarea cols="30" rows="10"></textarea>
+                                  </p>
+                                  <p>
+                                    <a class="primary-button">Submit Review</a>
+                                  </p>
+                                </form>
+                              </div>
+                            </div>
+                          </div>
+                        </div>
+                      </li>
+                    </ul>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
 }
+
+<!-- <app-featured-products [title]="'Related Products'" /> -->
