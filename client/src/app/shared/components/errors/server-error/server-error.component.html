@@ -1,7 +1,21 @@
 <div class="container">
   <div class="wrapper flexcenter flexcol">
-    <h1>404</h1>
-    <p class="main-text">Internal server error</p>
+    <h1>500 - Internal server error</h1>
+
+    @if (error) {
+    <h5>{{ error.title }} - {{ error.status }} - {{ error.instance }}</h5>
+    <p>This error comes from the server, not Angular</p>
+    <p style="font-weight: bold;">What to do next?</p>
+    <ol>
+      <li>Check the network tab in chrome dev tools</li>
+      <li>
+        Reproduce the error in postman. If same error, don't waste time
+        troubleshooting angular code
+      </li>
+    </ol>
+    <h5 style="font-weight: bold;">Stack trace</h5>
+    <p class="stack-trace">{{ error.detail }}</p>
+    }
     <button routerLink="/shop" class="primary-button">Back to shop</button>
   </div>
 </div>

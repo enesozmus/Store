@@ -2,6 +2,14 @@
   padding: 4px;
   border: 1px solid black;
 }
+
 .main-text {
   color: var(--primary-color);
+}
+
+.stack-trace {
+  background-color: bisque;
+  border: 1px solid black;
+  margin: 8px;
+  padding: 4px;
 }

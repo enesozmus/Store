@@ -14,6 +14,7 @@ var builder = WebApplication.CreateBuilder(args);
     builder.Services.AddExceptionHandler<BadRequestExceptionHandler>();
     builder.Services.AddExceptionHandler<UnauthorizedExceptionHandler>();
     builder.Services.AddExceptionHandler<NotFoundExceptionHandler>();
+    builder.Services.AddExceptionHandler<InternalServerExceptionHandler>();
     builder.Services.AddExceptionHandler<GlobalExceptionHandler>();
     builder.Services.AddProblemDetails();
     builder.Services.AddCors();

@@ -38,11 +38,11 @@ export class TestErrorComponent {
   get500Error() {
     this.http.get(this.baseUrl + 'buggy/internalerror').subscribe({
       next: (response) => console.log(response),
-      error: (error) => console.log(error),
+      // error: (error) => console.log(error),
     });
   }
 
-  get400ValidationError() {
+  getValidationError() {
     this.http.post(this.baseUrl + 'buggy/validationerror', {}).subscribe({
       next: (response) => console.log(response),
       error: (error) => (this.validationErrors = error),
