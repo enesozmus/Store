@@ -12,11 +12,21 @@ export const errorInterceptor: HttpInterceptorFn = (req, next) => {
     catchError((err: HttpErrorResponse) => {
       if (err.status === 400) {
         // alert(err.error.title || err.error);
-        toastr.error(err.error.detail, err.error.title || err.error, {
-          progressBar: true,
-          timeOut: 5000,
-        });
         // console.log(err.error);
+        if (err.error.errors) {
+          const modelStateErrors = [];
+          for (const key in err.error.errors) {
+            if (err.error.errors[key]) {
+              modelStateErrors.push(err.error.errors[key]);
+            }
+          }
+          throw modelStateErrors.flat();
+        } else {
+          toastr.error(err.error.detail, err.error.title || err.error, {
+            progressBar: true,
+            timeOut: 5000,
+          });
+        }
       }
       if (err.status === 401) {
         // alert(err.error.title || err.error);
