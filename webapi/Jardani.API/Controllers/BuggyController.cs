@@ -14,7 +14,7 @@ public class BuggyController : BaseApiController
     [HttpGet("badrequest")]
     public IActionResult GetBadRequest()
         // => BadRequest("Not a good request");
-        => throw new BadRequestException("Not a good request. (TEST) (TEST) (TEST) (Jardani)");
+        => throw new BadRequestException("Not a good request. Status:400 (TEST) (TEST) (TEST)");
 
     [HttpGet("notfound")]
     public IActionResult GetNotFound()
@@ -23,5 +23,5 @@ public class BuggyController : BaseApiController
 
     [HttpGet("internalerror")]
     public IActionResult GetInternalError()
-        => throw new Exception("This is a test exception. (TEST) (TEST) (TEST) (Jardani)");
+        => throw new Exception("This is a test exception. (TEST) (TEST) (TEST)");
 }
