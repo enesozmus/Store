@@ -11,12 +11,14 @@ registerSwiperElements();
 
 import { provideAnimations } from '@angular/platform-browser/animations';
 import { provideToastr } from 'ngx-toastr';
+import { loadingInterceptor } from './shared/interceptors/loading.interceptor';
 
 export const appConfig: ApplicationConfig = {
   providers: [
     provideZoneChangeDetection({ eventCoalescing: true }),
     provideRouter(routes),
     provideHttpClient(withInterceptors([errorInterceptor])),
+    // provideHttpClient(withInterceptors([errorInterceptor, loadingInterceptor])),
     provideAnimations(),
     provideToastr(),
   ],
