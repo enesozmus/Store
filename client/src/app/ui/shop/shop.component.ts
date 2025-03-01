@@ -257,6 +257,7 @@ export class ShopComponent {
   onTest1(selectedBrands: string[]) {
     // this.selectedBrands = selectedBrands;
     this.shopParams.brands = selectedBrands;
+    this.shopParams.pageIndex = 1;
     this.applyFilters();
     // console.log('🟥onTest1', selectedBrands);
   }
@@ -268,6 +269,7 @@ export class ShopComponent {
   onTest3(selectedTypes: string[]) {
     // this.selectedTypes = selectedTypes;
     this.shopParams.types = selectedTypes;
+    this.shopParams.pageIndex = 1;
     this.applyFilters();
     // console.log('⬛onTest3', selectedTypes);
   }
@@ -275,6 +277,7 @@ export class ShopComponent {
   onTest4(selectedColors: string[]) {
     // this.selectedColors = selectedColors;
     this.shopParams.colors = selectedColors;
+    this.shopParams.pageIndex = 1;
     this.applyFilters();
     // console.log('🟪onTest4', selectedColors);
   }
@@ -321,6 +324,7 @@ export class ShopComponent {
   onPageSizeChange(size: number) {
     // this.selectedPageSize = size;
     this.shopParams.pageSize = size;
+    this.shopParams.pageIndex = 1;
     this.applyFilters();
   }
 
