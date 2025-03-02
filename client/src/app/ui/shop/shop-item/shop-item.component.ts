@@ -1,11 +1,13 @@
-import { Component, Input } from '@angular/core';
+import { Component, inject, Input } from '@angular/core';
 import { Router, RouterLink } from '@angular/router';
-import { Product } from '../../../shared/models/product';
 
 import { HoverableComponent } from '../../../shared/components/hoverable/hoverable.component';
 import { DiscountComponent } from '../../../shared/components/discount/discount.component';
 import { RatingComponent } from '../../../shared/components/rating/rating.component';
 import { PriceComponent } from '../../../shared/components/price/price.component';
+
+import { Product } from '../../../shared/models/product';
+import { CartService } from '../../../services/cart.service';
 
 @Component({
   selector: 'app-shop-item',
@@ -22,6 +24,7 @@ import { PriceComponent } from '../../../shared/components/price/price.component
 })
 export class ShopItemComponent {
   @Input() items: Product[] = [];
+  cartService = inject(CartService);
   // productId: number = 1;
 
   constructor(private router: Router) {}
