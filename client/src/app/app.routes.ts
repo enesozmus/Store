@@ -4,6 +4,8 @@ import { HomeComponent } from './ui/home/home.component';
 import { ShopComponent } from './ui/shop/shop.component';
 import { ProductDetailsComponent } from './ui/shop/product-details/product-details.component';
 
+import { CartComponent } from './ui/cart/cart.component';
+
 import { TestErrorComponent } from './shared/test-error/test-error.component';
 import { NotFoundComponent } from './shared/components/errors/not-found/not-found.component';
 import { ServerErrorComponent } from './shared/components/errors/server-error/server-error.component';
@@ -20,6 +22,10 @@ export const routes: Routes = [
   {
     path: 'shop/:id',
     component: ProductDetailsComponent,
+  },
+  {
+    path: 'cart',
+    component: CartComponent,
   },
   {
     path: 'test-error',
