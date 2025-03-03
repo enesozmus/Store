@@ -27,7 +27,9 @@
             <a routerLink="/shop" routerLinkActive="active">Shop</a>
           </li>
           <li>
-            <a routerLink="/test-error" routerLinkActive="active">TEST ERRORS</a>
+            <a routerLink="/test-error" routerLinkActive="active"
+              >TEST ERRORS</a
+            >
           </li>
           <!-- 3 -->
           <li class="has-child">
@@ -168,7 +170,9 @@
             <!-- 1 -->
             <div class="icon-large">
               <i class="ri-shopping-cart-line"></i>
-              <div class="fly-item"><span class="item-number">0</span></div>
+              <div class="fly-item">
+                <span class="item-number">{{ cartService.itemCount() }}</span>
+              </div>
             </div>
             <!-- 2 -->
             <div class="icon-text" routerLink="/cart" routerLinkActive="active">
