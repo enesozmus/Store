@@ -6,7 +6,7 @@
     - Rubik
 */
 
-@import 'ngx-toastr/toastr';
+@import "ngx-toastr/toastr";
 
 /*-----------------------------------*\
   #CSS CUSTOM PROPERTIES (Variables)
@@ -467,6 +467,13 @@ form.search button {
 
 form.search button:is(:hover, :focus-visible) {
   background-color: var(--dark-color);
+}
+
+#initial-splash {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  height: 100vh;
 }
 
 /*-----------------------------------*\
