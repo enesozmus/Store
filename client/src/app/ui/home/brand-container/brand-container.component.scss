@@ -9,6 +9,6 @@
   transition: opacity 0.3s;
 }
 
-.item a:is(:hover, :focus) img {
+.item a:is(:hover, :focus-visible) img {
   opacity: 1;
 }

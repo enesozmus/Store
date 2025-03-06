@@ -19,10 +19,10 @@ img {
   transition: transform 0.3s;
 }
 
-.media:is(:hover, :focus) ::ng-deep .hoverable li a {
+.media:is(:hover, :focus-visible) ::ng-deep .hoverable li a {
   opacity: 1;
 }
-.media:is(:hover, :focus) ::ng-deep .hoverable li {
+.media:is(:hover, :focus-visible) ::ng-deep .hoverable li {
   transform: translateX(0);
   opacity: 1;
 }
@@ -71,12 +71,12 @@ h3 {
   margin-top: 145px;
 }
 
-.item:is(:hover, :focus) .footer {
+.item:is(:hover, :focus-visible) .footer {
   opacity: 1;
   visibility: visible;
 }
 
-.item:is(:hover, :focus) .content > *:not(.footer) {
+.item:is(:hover, :focus-visible) .content > *:not(.footer) {
   z-index: 3;
 }
 

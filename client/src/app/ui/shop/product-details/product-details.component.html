@@ -229,12 +229,13 @@
                     <!-- 1 -->
                     <div class="qty-control flexitem">
                       <button
-                        class="minus circle"
+                        [disabled]="quantity === 1"
+                        class="minus circle decrease-btn"
                         (click)="onHandleDecreaseByOne()"
                       >
                         -
                       </button>
-                      <input type="text" value="1" />
+                      <input min="0" [(ngModel)]="quantity" />
                       <button
                         class="plus circle"
                         (click)="onHandleIncreaseByOne()"
@@ -245,11 +246,11 @@
                     <!-- 2 -->
                     <div class="button-cart">
                       <button
+                        [disabled]="quantity === quantityInCart"
+                        (click)="updateCart()"
                         class="primary-button"
-                        (click)="onHandleAddToCart()"
-                        (click)="cartService.addItemToCart(product)"
                       >
-                        Add to cart
+                        {{ getButtonText() }}
                       </button>
                     </div>
                     <!-- 3 -->

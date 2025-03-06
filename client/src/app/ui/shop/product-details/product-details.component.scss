@@ -230,8 +230,8 @@ form p {
   border: 0;
 }
 
-.minus:is(:hover, :focus),
-.plus:is(:hover, :focus) {
+.minus:is(:hover, :focus-visible),
+.plus:is(:hover, :focus-visible) {
   color: #fff;
   background-color: var(--dark-color);
 }
@@ -428,6 +428,15 @@ form label {
   font-weight: var(--fw5);
   margin-bottom: 0.5em;
   text-transform: uppercase;
+}
+
+.primary-button:disabled,
+.primary-button[disabled],
+.decrease-btn:disabled,
+.decrease-btn[disabled] {
+  background-color: gray;
+  pointer-events: none;
+  // cursor: not-allowed !important;
 }
 
 @media only screen and (min-width: 481px) {

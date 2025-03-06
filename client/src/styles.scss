@@ -311,11 +311,11 @@ header li > a {
 }
 
 // Link Styles
-.main-links a:is(:hover, :focus) {
+.main-links a:is(:hover, :focus-visible) {
   color: var(--secondary-color);
 }
 
-.second-links a:is(:hover, :focus) {
+.second-links a:is(:hover, :focus-visible) {
   color: var(--light-text-color);
 }
 

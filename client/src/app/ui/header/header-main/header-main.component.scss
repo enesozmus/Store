@@ -38,11 +38,11 @@
   align-items: center;
 }
 
-.dpt-menu .has-child:is(:hover, :focus) ul {
+.dpt-menu .has-child:is(:hover, :focus-visible) ul {
   display: block;
 }
 
-.dpt-menu .has-child li a:is(:hover, :focus) {
+.dpt-menu .has-child li a:is(:hover, :focus-visible) {
   text-decoration: underline;
 }
 

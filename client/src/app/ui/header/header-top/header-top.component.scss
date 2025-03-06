@@ -13,7 +13,7 @@ li {
   position: relative;
 }
 
-li:is(:hover, :focus) ul {
+li:is(:hover, :focus-visible) ul {
   display: block;
 }
 

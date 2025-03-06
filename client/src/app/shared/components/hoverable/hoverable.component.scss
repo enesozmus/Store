@@ -19,12 +19,12 @@
   transition: var(--trans-background-color), opacity 0.3s;
 }
 
-.hoverable li a:is(:hover, :focus) {
+.hoverable li a:is(:hover, :focus-visible) {
   color: var(--white-color);
   background-color: var(--dark-color);
 }
 
-.hoverable li.active a:is(:hover, :focus) {
+.hoverable li.active a:is(:hover, :focus-visible) {
   background-color: var(--primary-color);
 }
 
