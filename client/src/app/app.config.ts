@@ -20,14 +20,14 @@ import { provideAnimations } from '@angular/platform-browser/animations';
 import { provideToastr } from 'ngx-toastr';
 import { loadingInterceptor } from './shared/interceptors/loading.interceptor';
 
-
 function initializeApp(initService: InitService) {
-  return () => lastValueFrom(initService.init()).finally(() => {
-    const splash = document.getElementById('initial-splash');
-    if (splash) {
-      splash.remove();
-    }
-  })
+  return () =>
+    lastValueFrom(initService.init()).finally(() => {
+      const splash = document.getElementById('initial-splash');
+      if (splash) {
+        splash.remove();
+      }
+    });
 }
 
 export const appConfig: ApplicationConfig = {
@@ -39,8 +39,8 @@ export const appConfig: ApplicationConfig = {
     {
       provide: APP_INITIALIZER,
       useFactory: initializeApp,
-      deps: [InitService],
       multi: true,
+      deps: [InitService],
     },
     provideAnimations(),
     provideToastr(),

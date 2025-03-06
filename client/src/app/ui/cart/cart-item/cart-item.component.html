@@ -1,0 +1,47 @@
+@if(item()) {
+<!-- 1 -->
+<td class="flexitem first-td">
+  <div class="thumbnail object-cover">
+    <a routerLink="/shop/{{ item().productId }}">
+      <img [src]="item().pictureUrl" alt="product-img" />
+    </a>
+  </div>
+  <div class="content">
+    <strong>
+      <a routerLink="/shop/{{ item().productId }}">{{ item().productName }}</a>
+    </strong>
+    <p>
+      Color:
+      {{ item().color }}
+    </p>
+  </div>
+</td>
+<!-- 2 -->
+<td>{{ item().price | currency }}</td>
+<!-- 3 -->
+<td>
+  <div class="qty-control flexitem">
+    <!-- <button class="minus" (click)="decrementQuantity()">-</button> -->
+    <a (click)="decrementQuantity()" class="minus">-</a>
+    <input type="text" [value]="item().quantity" min="1" />
+    <a (click)="incrementQuantity()" class="plus">+</a>
+  </div>
+</td>
+<!-- 4 -->
+<td>{{ item().price * item().quantity | currency }}</td>
+<!-- 5 -->
+<td>
+  <a class="item-remove" (click)="removeItemFromCart()">
+    <i class="ri-close-line"></i>
+  </a>
+</td>
+}
+<!-- [src]="item().pictureUrl"
+{{item().productName}}
+{{item().brand}}
+{{item().color}}
+{{item().price}}
+(click)="incrementQuantity()"
+(click)="decrementQuantity()"
+(click)="removeItemFromCart()"
+{{cartService.totals()?.subtotal}} -->

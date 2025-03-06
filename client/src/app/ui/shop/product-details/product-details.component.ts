@@ -1,8 +1,9 @@
-import { Component, CUSTOM_ELEMENTS_SCHEMA } from '@angular/core';
+import { Component, CUSTOM_ELEMENTS_SCHEMA, inject } from '@angular/core';
 import { ActivatedRoute, RouterLink } from '@angular/router';
 
 import { ShopService } from '../../../services/shop.service';
 import { Product } from '../../../shared/models/product';
+import { CartService } from '../../../services/cart.service';
 
 @Component({
   selector: 'app-product-details',
@@ -14,6 +15,7 @@ import { Product } from '../../../shared/models/product';
 })
 export class ProductDetailsComponent {
   product?: Product;
+  cartService = inject(CartService);
 
   information = false;
   detail = false;

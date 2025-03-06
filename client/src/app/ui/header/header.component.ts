@@ -2,7 +2,7 @@ import { Component, inject } from '@angular/core';
 import { HeaderTopComponent } from './header-top/header-top.component';
 import { HeaderNavComponent } from './header-nav/header-nav.component';
 import { HeaderMainComponent } from './header-main/header-main.component';
-import { BusyService } from '../../services/busy.service';
+// import { BusyService } from '../../services/busy.service';
 
 @Component({
   selector: 'app-header',
@@ -12,5 +12,5 @@ import { BusyService } from '../../services/busy.service';
   styleUrl: './header.component.scss',
 })
 export class HeaderComponent {
-  busyService = inject(BusyService);
+  // busyService = inject(BusyService);
 }

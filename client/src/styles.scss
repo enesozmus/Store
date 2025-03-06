@@ -54,7 +54,7 @@
   outline: 0;
   margin: 0;
   padding: 0;
-  vertical-align: baseline;
+  // vertical-align: baseline;
 }
 
 html {
@@ -293,10 +293,10 @@ header li > a {
 }
 
 // Text Styles
-.main-text {
-  font-size: 1.2em;
-  color: var(--light-bg-color);
-}
+// .main-text {
+//   font-size: 1.2em;
+//   color: var(--light-bg-color);
+// }
 
 .mini-text {
   font-size: var(--font-smaller);
@@ -432,6 +432,25 @@ form {
   position: relative;
 }
 
+form p {
+	display: flex;
+	flex-direction: column;
+	margin-bottom: 2em;
+}
+
+form label {
+  font-weight: var(--fw5);
+  margin-bottom: 0.5em;
+  text-transform: uppercase;
+}
+
+form :where(input, textarea) {
+  line-height: 1;
+  padding: 1em;
+  border: 1px solid var(--border-color);
+  outline: 0;
+}
+
 form.search input {
   line-height: 3.25em;
   padding: 0 7em 0 4.5em;
@@ -455,8 +474,6 @@ form.search :where(span, button) {
 
 form.search button {
   right: 0;
-  border: 0;
-  outline: 0;
   font-size: 0.875em !important;
   font-weight: var(--fw6);
   color: var(--white-color) !important;

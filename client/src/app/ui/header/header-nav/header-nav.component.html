@@ -168,17 +168,29 @@
         <li>
           <a class="iscart">
             <!-- 1 -->
-            <div class="icon-large">
+            <div
+              class="icon-large"
+              routerLink="/cart"
+              routerLinkActive="active"
+            >
               <i class="ri-shopping-cart-line"></i>
               <div class="fly-item">
-                <span class="item-number">{{ cartService.itemCount() }}</span>
+                @if(cartService.itemCount()) {
+                  <span class="item-number">{{ cartService.itemCount() }}</span>
+                } @else {
+                  <span class="item-number">0</span>
+                }
               </div>
             </div>
             <!-- 2 -->
-            <div class="icon-text" routerLink="/cart" routerLinkActive="active">
-              <div class="mini-text">Total</div>
-              <div class="cart-total">$0.00</div>
-            </div>
+            @if (cartService.totals()) {
+              <div class="icon-text">
+                <div class="mini-text">Total</div>
+                <div class="cart-total">
+                  {{ cartService.totals()?.subtotal | currency }}
+                </div>
+              </div>
+            }
           </a>
         </li>
       </ul>

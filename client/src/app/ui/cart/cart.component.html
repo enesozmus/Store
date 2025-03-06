@@ -1,0 +1,165 @@
+<div class="cart">
+  <div class="container">
+    <div class="wrapper">
+      <!-- 1 -->
+      <div class="breadcrumb">
+        <ul class="flexitem">
+          <li><a routerLink="/">Home</a></li>
+          <li>Cart</li>
+        </ul>
+      </div>
+      <!-- 2 -->
+      <div class="page-title">
+        <h1>Shopping Cart</h1>
+      </div>
+      <!-- 3 -->
+      <div class="products cart">
+        <div class="flexwrap">
+          <!-- 1 -->
+          <form class="form-cart">
+            <div class="item">
+              <table id="cart-table">
+                <thead>
+                  <tr>
+                    <th>Item</th>
+                    <th>Price</th>
+                    <th>Qty</th>
+                    <th>Subtotal</th>
+                    <th></th>
+                  </tr>
+                </thead>
+                <tbody>
+                  @for(item of cartService.cart()?.items; track item.productId;
+                  let first = $first;) {
+                  <tr [class.first]="first">
+                    <app-cart-item [item]="item" />
+                  </tr>
+                  }
+                </tbody>
+              </table>
+            </div>
+          </form>
+          <!-- 2 -->
+          <div class="cart-summary styled">
+            <div class="item">
+              <div class="coupon">
+                <input type="text" placeholder="Enter coupon" />
+                <button>Apply</button>
+              </div>
+              <div class="shipping-rate collapse">
+                <div class="has-child expand">
+                  <a class="icon-small">Estimate Shipping and Tax</a>
+                  <div class="content">
+                    <div class="countries">
+                      <form action="">
+                        <label for="country">Country</label>
+                        <select name="country" id="country">
+                          <option value=""></option>
+                          <option value="1">Germany</option>
+                          <option value="2">UK</option>
+                          <option value="3">Poland</option>
+                          <option value="4" selected="selected">USA</option>
+                          <option value="5">Others</option>
+                        </select>
+                      </form>
+                    </div>
+                    <div class="states">
+                      <form action="">
+                        <label for="state">State/Province</label>
+                        <select name="state" id="state">
+                          <option value="">
+                            Select a region, state or province
+                          </option>
+                          <option value="1">Alabama</option>
+                          <option value="2">Alaska</option>
+                          <option value="3">American Samoa</option>
+                          <option value="4">Arizona</option>
+                          <option value="5">Arkansas</option>
+                          <option value="6">Others</option>
+                        </select>
+                      </form>
+                    </div>
+                    <div class="postal-code">
+                      <form action="">
+                        <label for="postal">Zip/Postal Code</label>
+                        <input type="number" name="postal" id="postal" />
+                      </form>
+                    </div>
+                    <div class="rate-options variant">
+                      <form action="">
+                        <p>
+                          <span>AA cargo: $10.00</span>
+                          <input
+                            type="radio"
+                            name="rate-option"
+                            id="flat"
+                            checked
+                          />
+                          <label
+                            for="flat"
+                            class="circle"
+                            (click)="flatShipping()"
+                          ></label>
+                        </p>
+                        <p>
+                          <span>BB cargo: $0.00</span>
+                          <input type="radio" name="rate-option" id="best" />
+                          <label
+                            for="best"
+                            class="circle"
+                            (click)="bestShipping()"
+                          ></label>
+                        </p>
+                      </form>
+                    </div>
+                  </div>
+                </div>
+              </div>
+              <div class="cart-total">
+                <table>
+                  <tbody>
+                    <tr>
+                      <th>Subtotal</th>
+                      <td>{{ cartService.totals()?.subtotal | currency }}</td>
+                    </tr>
+                    <tr>
+                      <th>Discount</th>
+                      <td class="discount">
+                        -{{ cartService.totals()?.discount | currency }}
+                      </td>
+                    </tr>
+                    <tr>
+                      <th>
+                        Shipping @if (flat) {
+                        <span class="mini-text">(AA cargo)</span>
+                        } @else {
+                        <span class="mini-text">(BB cargo)</span>
+                        }
+                      </th>
+                      <td
+                        [class.my_class]="flat === true"
+                        [class.my_class2]="flat === false"
+                      >
+                        {{ cartService.totals()?.shipping | currency }}
+                      </td>
+                    </tr>
+                    <tr class="grand-total">
+                      <th>TOTAL</th>
+                      <td>
+                        <strong>{{
+                          cartService.totals()?.total | currency
+                        }}</strong>
+                      </td>
+                    </tr>
+                  </tbody>
+                </table>
+                <a class="secondary-button">Checkout</a>
+                <a routerLink="/shop" class="primary-button">Continue Shopping</a>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

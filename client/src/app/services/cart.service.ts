@@ -26,12 +26,12 @@ export class CartService {
       (sum, item) => sum + item.price * item.quantity,
       0
     );
-    const shipping = 0;
-    const discount = 0;
+    const discount = 100;
+    const shipping = 10;
     return {
       subtotal,
-      shipping,
       discount,
+      shipping,
       total: subtotal + shipping - discount,
     };
   });
