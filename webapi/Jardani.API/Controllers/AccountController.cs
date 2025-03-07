@@ -1,7 +1,10 @@
+using System.Security.Claims;
 using Jardani.API.DTOs;
 using Jardani.Domain.Entities;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.EntityFrameworkCore;
 
 namespace Jardani.API.Controllers;
 public class AccountController(SignInManager<AppUser> signInManager) : BaseApiController
@@ -30,4 +33,35 @@ public class AccountController(SignInManager<AppUser> signInManager) : BaseApiCo
         }
         return Ok();
     }
+
+    [Authorize]
+    [HttpPost("logout")]
+    public async Task<ActionResult> Logout()
+    {
+        await signInManager.SignOutAsync();
+
+        return NoContent();
+    }
+
+    [HttpGet("user-info")]
+    public async Task<ActionResult> GetUserInfo()
+    {
+        if (User.Identity?.IsAuthenticated == false) return NoContent();
+
+        var user = await signInManager.UserManager.Users
+                                                    .FirstOrDefaultAsync(x => x.Email == User.FindFirstValue(ClaimTypes.Email));
+
+        if (user == null) return Unauthorized();
+
+        return Ok(new
+        {
+            user.FirstName,
+            user.LastName,
+            user.Email,
+        });
+    }
+
+    [HttpGet]
+    public ActionResult GetAuthState()
+                    => Ok(new { IsAuthenticated = User.Identity?.IsAuthenticated ?? false });
 }
