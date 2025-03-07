@@ -1,6 +1,7 @@
 using Jardani.API.Exceptions.ExceptionHandlers;
 using Jardani.API.Middlewares;
 using Jardani.Application.IServices;
+using Jardani.Domain.Entities;
 using Jardani.Infrastructure;
 using Jardani.Infrastructure.EFCore.Contexts;
 using Jardani.Infrastructure.EFCore.Seeds;
@@ -29,6 +30,9 @@ var builder = WebApplication.CreateBuilder(args);
         return ConnectionMultiplexer.Connect(configuration);
     });
     builder.Services.AddSingleton<ICartService, CartService>();
+    builder.Services.AddAuthorization();
+    builder.Services.AddIdentityApiEndpoints<AppUser>()
+                    .AddEntityFrameworkStores<StoreDbContext>();
 }
 
 var app = builder.Build();
@@ -45,6 +49,7 @@ var app = builder.Build();
     app.UseAuthorization();
 
     app.MapControllers();
+    app.MapGroup("api").MapIdentityApi<AppUser>(); // api/login
 
     try
     {

@@ -1,10 +1,11 @@
 using Jardani.Domain.Entities;
 using Jardani.Infrastructure.EFCore.Configurations;
+using Microsoft.AspNetCore.Identity.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore;
 
 namespace Jardani.Infrastructure.EFCore.Contexts;
 
-public class StoreDbContext : DbContext
+public class StoreDbContext : IdentityDbContext<AppUser>
 {
     public StoreDbContext(DbContextOptions<StoreDbContext> options) : base(options) { }
 
@@ -13,6 +14,7 @@ public class StoreDbContext : DbContext
     // public DbSet<Product> Products { get; set; } = null!
     // public DbSet<Product>? Products { get; set; }
     public DbSet<Product> Products => Set<Product>();
+    public DbSet<Address> Addresses => Set<Address>();
 
     protected override void OnModelCreating(ModelBuilder modelBuilder)
     {
