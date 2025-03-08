@@ -156,6 +156,23 @@
     <div class="right">
       <ul class="flexitem second-links">
         <!-- 1 -->
+        <li>
+          <!-- 1 -->
+          <a routerLink="/account/register">
+            <div class="icon-large"><i class="ri-quill-pen-line"></i></div>
+          </a>
+          <!-- 2 -->
+          <!-- <a routerLink="">
+            <div class="icon-large"><i class="ri-account-circle-fill"></i></div>
+          </a> -->
+        </li>
+        <!-- 2 -->
+        <li>
+          <a routerLink="/account/login">
+            <div class="icon-large"><i class="ri-login-circle-line"></i></div>
+          </a>
+        </li>
+        <!-- 3 -->
         <li class="mobile-hide">
           <a>
             <!-- 1 -->
@@ -164,7 +181,7 @@
             <div class="fly-item"><span class="item-number">0</span></div>
           </a>
         </li>
-        <!-- 2 -->
+        <!-- 4 -->
         <li>
           <a class="iscart">
             <!-- 1 -->
@@ -176,20 +193,20 @@
               <i class="ri-shopping-cart-line"></i>
               <div class="fly-item">
                 @if(cartService.itemCount()) {
-                  <span class="item-number">{{ cartService.itemCount() }}</span>
+                <span class="item-number">{{ cartService.itemCount() }}</span>
                 } @else {
-                  <span class="item-number">0</span>
+                <span class="item-number">0</span>
                 }
               </div>
             </div>
             <!-- 2 -->
             @if (cartService.totals()) {
-              <div class="icon-text">
-                <div class="mini-text">Total</div>
-                <div class="cart-total">
-                  {{ cartService.totals()?.subtotal | currency }}
-                </div>
+            <div class="icon-text">
+              <div class="mini-text">Total</div>
+              <div class="cart-total">
+                {{ cartService.totals()?.subtotal | currency }}
               </div>
+            </div>
             }
           </a>
         </li>

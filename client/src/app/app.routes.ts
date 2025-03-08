@@ -1,10 +1,14 @@
 import { Routes } from '@angular/router';
 
 import { HomeComponent } from './ui/home/home.component';
+
 import { ShopComponent } from './ui/shop/shop.component';
 import { ProductDetailsComponent } from './ui/shop/product-details/product-details.component';
 
 import { CartComponent } from './ui/cart/cart.component';
+
+import { RegisterComponent } from './ui/account/register/register.component';
+import { LoginComponent } from './ui/account/login/login.component';
 
 import { TestErrorComponent } from './shared/test-error/test-error.component';
 import { NotFoundComponent } from './shared/components/errors/not-found/not-found.component';
@@ -26,6 +30,14 @@ export const routes: Routes = [
   {
     path: 'cart',
     component: CartComponent,
+  },
+  {
+    path: 'account/register',
+    component: RegisterComponent,
+  },
+  {
+    path: 'account/login',
+    component: LoginComponent,
   },
   {
     path: 'test-error',
