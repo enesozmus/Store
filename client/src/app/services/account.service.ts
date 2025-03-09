@@ -13,6 +13,8 @@ export class AccountService {
   currentUser = signal<User | null>(null);
 
   login(values: any) {
+    console.log('🔵AccountService → login() →', values);
+
     let params = new HttpParams();
     params = params.append('useCookies', true);
     return this.http.post<User>(this.baseUrl + 'login', values, { params });
@@ -25,7 +27,9 @@ export class AccountService {
   getUserInfo() {
     return this.http.get<User>(this.baseUrl + 'account/user-info').pipe(
       map((user) => {
+        console.log('🟢AccountService → getUserInfo() → map → user => ', user);
         this.currentUser.set(user);
+        console.log('🟢AccountService → getUserInfo() → map → currentUser() => ', this.currentUser());
         return user;
       })
     );

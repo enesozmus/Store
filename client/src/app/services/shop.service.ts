@@ -79,7 +79,7 @@ export class ShopService {
     // console.log('service');
     // console.log('service → brands', brands);
 
-    console.log('🟦🟦🔵2ShopService →', shopParams);
+    // console.log('🟦🟦🔵2ShopService →', shopParams);
 
     if (shopParams.brands.length > 0) {
       params = params.append('brands', shopParams.brands.join(','));

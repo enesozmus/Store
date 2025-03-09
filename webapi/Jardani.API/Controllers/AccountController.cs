@@ -30,6 +30,7 @@ public class AccountController(SignInManager<AppUser> signInManager) : BaseApiCo
 
             return ValidationProblem();
         }
+
         return Ok();
     }
 
@@ -45,6 +46,9 @@ public class AccountController(SignInManager<AppUser> signInManager) : BaseApiCo
     [HttpGet("user-info")]
     public async Task<ActionResult> GetUserInfo()
     {
+        Console.WriteLine("-");
+        Console.WriteLine(User.Identity?.IsAuthenticated);
+        Console.WriteLine("-");
         if (User.Identity?.IsAuthenticated == false) return NoContent();
 
         var user = await signInManager.UserManager.GetUserByEmailWithAddress(User);
@@ -57,6 +61,9 @@ public class AccountController(SignInManager<AppUser> signInManager) : BaseApiCo
             Address = user.Address?.ToDto()
         });
     }
+
+    [HttpGet("auth-status")]
+    public ActionResult GetAuthState() => Ok(new { IsAuthenticated = User.Identity?.IsAuthenticated ?? false });
 
     [Authorize]
     [HttpPost("address")]
@@ -79,8 +86,4 @@ public class AccountController(SignInManager<AppUser> signInManager) : BaseApiCo
 
         return Ok(user.Address.ToDto());
     }
-
-    [HttpGet]
-    public ActionResult GetAuthState()
-                    => Ok(new { IsAuthenticated = User.Identity?.IsAuthenticated ?? false });
 }

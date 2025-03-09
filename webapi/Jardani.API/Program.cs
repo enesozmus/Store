@@ -39,14 +39,17 @@ var app = builder.Build();
 
 {
     app.UseExceptionHandler(opt => { });
+
     app.UseCors(
         x => x.AllowAnyHeader()
             .AllowAnyMethod()
             .AllowCredentials()
             .WithOrigins("http://localhost:4200", "https://localhost:4200"));
+
     app.UseHttpsRedirection();
 
-    app.UseAuthorization();
+    // 🟥 At first I thought this might be the problem and I commented out the relevant line and restarted the application, but it didn't work.
+    // app.UseAuthorization();
 
     app.MapControllers();
     app.MapGroup("api").MapIdentityApi<AppUser>(); // api/login
