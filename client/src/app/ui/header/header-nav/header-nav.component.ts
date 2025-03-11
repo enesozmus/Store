@@ -1,7 +1,8 @@
 import { Component, inject } from '@angular/core';
-import { Router, RouterLink, RouterLinkActive } from '@angular/router';
-import { CartService } from '../../../services/cart.service';
 import { CurrencyPipe } from '@angular/common';
+import { Router, RouterLink, RouterLinkActive } from '@angular/router';
+
+import { CartService } from '../../../services/cart.service';
 import { AccountService } from '../../../services/account.service';
 
 @Component({
@@ -16,6 +17,8 @@ export class HeaderNavComponent {
   accountService = inject(AccountService);
   private router = inject(Router);
 
+  dropdownMenu = false;
+
   logout() {
     this.accountService.logout().subscribe({
       next: () => {
@@ -23,5 +26,10 @@ export class HeaderNavComponent {
         this.router.navigateByUrl('/');
       },
     });
+  }
+
+  onToggleMenu() {
+    this.dropdownMenu = !this.dropdownMenu;
+    console.log('here');
   }
 }

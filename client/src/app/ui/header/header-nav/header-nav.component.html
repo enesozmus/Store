@@ -156,22 +156,60 @@
     <div class="right">
       <ul class="flexitem second-links">
         @if(accountService.currentUser()) {
+          <div class="dropdown">
+            <div class="dropdown-menu" [class.active]="dropdownMenu">
+              <h3>
+                {{ accountService.currentUser()?.firstName }}
+                {{ accountService.currentUser()?.lastName }}
+                <br />
+                <span>Designer</span>
+              </h3>
+              <ul>
+                <li>
+                  <img src="/images/dropdown/profile.png" />
+                  <a>My Profile</a>
+                </li>
+                <li>
+                  <img src="/images/dropdown/edit.png" />
+                  <a>Edit Profile</a>
+                </li>
+                <li>
+                  <img src="/images/dropdown/inbox.png" />
+                  <a>Inbox</a>
+                </li>
+                <li>
+                  <img src="/images/dropdown/settings.png" />
+                  <a>Settings</a>
+                </li>
+                <li>
+                  <img src="/images/dropdown/help.png" />
+                  <a>Help</a>
+                </li>
+                <li>
+                  <img src="/images/dropdown/logout.png" />
+                  <a (click)="logout()">Logout</a>
+                </li>
+              </ul>
+            </div>
+          </div>
           <li>
             <a>
-              <div class="icon-large"><i class="ri-account-circle-fill"></i></div>
+              <div class="icon-large" title="profile" (click)="onToggleMenu()">
+                <i class="ri-account-circle-fill"></i>
+              </div>
             </a>
           </li>
           <li>
-            <a (click)="logout()">
+            <a (click)="logout()" title="logout">
               <div class="icon-large"><i class="ri-logout-circle-line"></i></div>
             </a>
           </li>
         } @else {
           <li>
-              <a routerLink="/account/register">
-                <div class="icon-large"><i class="ri-quill-pen-line"></i></div>
-              </a>
-            </li>
+            <a routerLink="/account/register">
+              <div class="icon-large"><i class="ri-quill-pen-line"></i></div>
+            </a>
+          </li>
           <li>
             <a routerLink="/account/login">
               <div class="icon-large"><i class="ri-login-circle-line"></i></div>
