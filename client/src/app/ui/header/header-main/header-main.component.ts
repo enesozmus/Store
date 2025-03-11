@@ -26,7 +26,10 @@ export class HeaderMainComponent {
         if (
           window.location.href === 'http://localhost:4200' ||
           window.location.href === 'http://localhost:4200/' ||
-          window.location.href === 'http://localhost:4200/home'
+          window.location.href === 'http://localhost:4200/home' ||
+          window.location.href === 'https://localhost:4200' ||
+          window.location.href === 'https://localhost:4200/' ||
+          window.location.href === 'https://localhost:4200/home'
         ) {
           this.dptMenu = true;
         } else {

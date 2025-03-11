@@ -30,6 +30,7 @@ public class AccountController(SignInManager<AppUser> signInManager) : BaseApiCo
 
             return ValidationProblem();
         }
+
         return Ok();
     }
 
@@ -58,6 +59,9 @@ public class AccountController(SignInManager<AppUser> signInManager) : BaseApiCo
         });
     }
 
+    [HttpGet("auth-status")]
+    public ActionResult GetAuthState() => Ok(new { IsAuthenticated = User.Identity?.IsAuthenticated ?? false });
+
     [Authorize]
     [HttpPost("address")]
     public async Task<ActionResult<Address>> CreateOrUpdateAddress(AddressDto addressDto)
@@ -79,8 +83,4 @@ public class AccountController(SignInManager<AppUser> signInManager) : BaseApiCo
 
         return Ok(user.Address.ToDto());
     }
-
-    [HttpGet]
-    public ActionResult GetAuthState()
-                    => Ok(new { IsAuthenticated = User.Identity?.IsAuthenticated ?? false });
 }

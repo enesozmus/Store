@@ -1,1 +1,33 @@
-<p>login works!</p>
+<div class="container">
+  <div class="wrapper">
+    <div class="title">Login Form</div>
+    <form [formGroup]="loginForm" (ngSubmit)="onSubmit()">
+      <!-- 1 -->
+      <div class="field">
+        <input formControlName="email" type="email" required />
+        <label>Email Address</label>
+      </div>
+      <!-- 2 -->
+      <div class="field">
+        <input formControlName="password" type="password" required />
+        <label>Password</label>
+      </div>
+      <!-- 3 -->
+      <div class="content">
+        <div class="checkbox">
+          <input type="checkbox" id="remember-me" />
+          <label for="remember-me">Remember me</label>
+        </div>
+        <div class="pass-link">
+          <a>Forgot password?</a>
+        </div>
+      </div>
+      <!-- 4 -->
+      <div class="field">
+        <input type="submit" value="Login" />
+      </div>
+      <!-- 5 -->
+      <div class="signup-link">Not a member? <a>Signup now</a></div>
+    </form>
+  </div>
+</div>

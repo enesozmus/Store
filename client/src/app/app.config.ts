@@ -3,15 +3,16 @@ import {
   ApplicationConfig,
   provideZoneChangeDetection,
 } from '@angular/core';
+
 import { provideRouter } from '@angular/router';
+import { routes } from './app.routes';
 
 import { provideHttpClient, withInterceptors } from '@angular/common/http';
 import { errorInterceptor } from './shared/interceptors/error.interceptor';
+import { authInterceptor } from './shared/interceptors/auth.interceptor';
 
 import { InitService } from './services/init.service';
 import { lastValueFrom } from 'rxjs';
-
-import { routes } from './app.routes';
 
 import { register as registerSwiperElements } from 'swiper/element/bundle';
 registerSwiperElements();
@@ -34,8 +35,9 @@ export const appConfig: ApplicationConfig = {
   providers: [
     provideZoneChangeDetection({ eventCoalescing: true }),
     provideRouter(routes),
-    // provideHttpClient(withInterceptors([errorInterceptor])),
-    provideHttpClient(withInterceptors([errorInterceptor, loadingInterceptor])),
+    provideHttpClient(
+      withInterceptors([errorInterceptor, loadingInterceptor, authInterceptor])
+    ),
     {
       provide: APP_INITIALIZER,
       useFactory: initializeApp,
