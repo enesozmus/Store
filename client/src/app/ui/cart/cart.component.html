@@ -29,11 +29,14 @@
                   </tr>
                 </thead>
                 <tbody>
-                  @for(item of cartService.cart()?.items; track item.productId;
-                  let first = $first;) {
-                  <tr [class.first]="first">
-                    <app-cart-item [item]="item" />
-                  </tr>
+                  @if(cartService.cart()?.items?.length! > 0) {
+                    @for(item of cartService.cart()?.items; track item.productId; let first = $first;) {
+                      <tr [class.first]="first">
+                        <app-cart-item [item]="item" />
+                      </tr>
+                    }
+                  } @else {
+                    <app-empty-state />
                   }
                 </tbody>
               </table>

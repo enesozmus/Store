@@ -16,6 +16,7 @@ import { NotFoundComponent } from './shared/components/errors/not-found/not-foun
 import { ServerErrorComponent } from './shared/components/errors/server-error/server-error.component';
 
 import { authGuard } from './shared/guards/auth.guard';
+import { emptyCartGuard } from './shared/guards/empty-cart.guard';
 
 export const routes: Routes = [
   {
@@ -37,7 +38,7 @@ export const routes: Routes = [
   {
     path: 'checkout',
     component: CheckoutComponent,
-    canActivate: [authGuard],
+    canActivate: [authGuard, emptyCartGuard],
   },
   {
     path: 'account/register',
