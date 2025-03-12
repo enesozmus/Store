@@ -6,6 +6,7 @@ import { ShopComponent } from './ui/shop/shop.component';
 import { ProductDetailsComponent } from './ui/shop/product-details/product-details.component';
 
 import { CartComponent } from './ui/cart/cart.component';
+import { CheckoutComponent } from './ui/checkout/checkout.component';
 
 import { RegisterComponent } from './ui/account/register/register.component';
 import { LoginComponent } from './ui/account/login/login.component';
@@ -13,6 +14,8 @@ import { LoginComponent } from './ui/account/login/login.component';
 import { TestErrorComponent } from './shared/test-error/test-error.component';
 import { NotFoundComponent } from './shared/components/errors/not-found/not-found.component';
 import { ServerErrorComponent } from './shared/components/errors/server-error/server-error.component';
+
+import { authGuard } from './shared/guards/auth.guard';
 
 export const routes: Routes = [
   {
@@ -30,6 +33,11 @@ export const routes: Routes = [
   {
     path: 'cart',
     component: CartComponent,
+  },
+  {
+    path: 'checkout',
+    component: CheckoutComponent,
+    canActivate: [authGuard],
   },
   {
     path: 'account/register',
