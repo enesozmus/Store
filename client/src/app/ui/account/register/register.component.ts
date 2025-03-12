@@ -1,7 +1,7 @@
 import { Component, inject } from '@angular/core';
 import { Router } from '@angular/router';
 import { JsonPipe } from '@angular/common';
-import { FormBuilder, ReactiveFormsModule } from '@angular/forms';
+import { FormBuilder, ReactiveFormsModule, Validators } from '@angular/forms';
 import { ToastrService } from 'ngx-toastr';
 import { AccountService } from '../../../services/account.service';
 
@@ -17,12 +17,13 @@ export class RegisterComponent {
   private accountService = inject(AccountService);
   private router = inject(Router);
   private toastr = inject(ToastrService);
+  validationErrors?: string[];
 
   registerForm = this.formBuilder.group({
-    firstName: [''],
-    lastName: [''],
-    email: [''],
-    password: [''],
+    firstName: ['', Validators.required],
+    lastName: ['', Validators.required],
+    email: ['', [Validators.required, Validators.email]],
+    password: ['', Validators.required],
   });
 
   onSubmit() {
@@ -34,6 +35,7 @@ export class RegisterComponent {
         });
         this.router.navigateByUrl('/account/login');
       },
+      error: (errors) => (this.validationErrors = errors),
     });
   }
 }

@@ -88,6 +88,7 @@ form .content label {
 form .content .pass-link {
   color: "";
 }
+
 form .field input[type="submit"] {
   color: #fff;
   border: none;
@@ -102,6 +103,7 @@ form .field input[type="submit"] {
 form .field input[type="submit"]:is(:hover, :focus-visible) {
   transform: scale(0.95);
 }
+
 form .signup-link {
   color: #262626;
   margin-top: 20px;

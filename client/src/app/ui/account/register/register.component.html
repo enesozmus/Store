@@ -6,6 +6,9 @@
       <div class="field">
         <input formControlName="firstName" type="text" required />
         <label>First Name</label>
+        <!-- @if (registerForm.get('firstName')?.hasError('required')) {
+          <p>First name is required</p>
+        } -->
       </div>
       <!-- 2 -->
       <div class="field">
@@ -14,12 +17,12 @@
       </div>
       <!-- 3 -->
       <div class="field">
-        <input formControlName="email" type="email" required />
+        <input formControlName="email" type="email" required autocomplete="off"/>
         <label>Email Address</label>
       </div>
       <!-- 4 -->
       <div class="field">
-        <input formControlName="password" type="password" required />
+        <input formControlName="password" type="password" required autocomplete="new-password"/>
         <label>Password</label>
       </div>
       <!-- 4 -->
@@ -27,8 +30,22 @@
         <input type="submit" value="Register" />
       </div>
       <!-- 5 -->
-      <div class="signup-link">Form Values: {{ registerForm.value | json}}</div>
-      <div class="signup-link">Form Status: {{ registerForm.status }}</div>
+      @if (validationErrors) {
+        <div class="flexcol" style="background-color: rgb(206, 99, 99);">
+          <div class="row">
+            <h4 style="margin-left: 2px; margin-top: 2px;">Validation Errors</h4>
+            <ul style="margin-top: 6px; margin-left: 10px;">
+              @for (error of validationErrors; track $index) {
+                <li>
+                  . {{ error }}
+                </li>
+                <!-- Form Values: {{ registerForm.value | json }} -->
+                <!-- Form Status: {{ registerForm.status }} -->
+              }
+            </ul>
+          </div>
+        </div>
+      }
     </form>
   </div>
 </div>
