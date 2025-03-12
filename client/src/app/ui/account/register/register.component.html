@@ -1,1 +1,34 @@
-<p>register works!</p>
+<div class="container">
+  <div class="wrapper">
+    <div class="title">Register Form</div>
+    <form [formGroup]="registerForm" (ngSubmit)="onSubmit()">
+      <!-- 1 -->
+      <div class="field">
+        <input formControlName="firstName" type="text" required />
+        <label>First Name</label>
+      </div>
+      <!-- 2 -->
+      <div class="field">
+        <input formControlName="lastName" type="text" required />
+        <label>Last Name</label>
+      </div>
+      <!-- 3 -->
+      <div class="field">
+        <input formControlName="email" type="email" required />
+        <label>Email Address</label>
+      </div>
+      <!-- 4 -->
+      <div class="field">
+        <input formControlName="password" type="password" required />
+        <label>Password</label>
+      </div>
+      <!-- 4 -->
+      <div class="field">
+        <input type="submit" value="Register" />
+      </div>
+      <!-- 5 -->
+      <div class="signup-link">Form Values: {{ registerForm.value | json}}</div>
+      <div class="signup-link">Form Status: {{ registerForm.status }}</div>
+    </form>
+  </div>
+</div>
