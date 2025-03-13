@@ -485,3 +485,6 @@ $RECYCLE.BIN/
 
 #EFCore Migrations
 *Jardani.Infrastructure/EFCore/Migrations
+
+#API
+*Jardani.API/appsettings.json
