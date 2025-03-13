@@ -1,6 +1,8 @@
 using Jardani.Application.IRepositories;
+using Jardani.Application.IServices;
 using Jardani.Infrastructure.EFCore.Contexts;
 using Jardani.Infrastructure.Repositories;
+using Jardani.Infrastructure.Services;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
@@ -24,6 +26,9 @@ public static class InfrastructureServicesRegistration
 
           services.AddScoped<IProductReadRepository, ProductReadRepository>();
           services.AddScoped<IProductWriteRepository, ProductWriteRepository>();
+
+          services.AddSingleton<ICartService, CartService>();
+          services.AddScoped<IPaymentService, PaymentService>();
 
           #endregion
 
