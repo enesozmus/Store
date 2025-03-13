@@ -15,6 +15,7 @@ public class StoreDbContext : IdentityDbContext<AppUser>
     // public DbSet<Product>? Products { get; set; }
     public DbSet<Product> Products => Set<Product>();
     public DbSet<Address> Addresses => Set<Address>();
+    public DbSet<DeliveryMethod> DeliveryMethods => Set<DeliveryMethod>();
 
     protected override void OnModelCreating(ModelBuilder modelBuilder)
     {
