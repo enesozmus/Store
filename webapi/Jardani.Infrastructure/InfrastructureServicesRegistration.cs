@@ -27,6 +27,9 @@ public static class InfrastructureServicesRegistration
           services.AddScoped<IProductReadRepository, ProductReadRepository>();
           services.AddScoped<IProductWriteRepository, ProductWriteRepository>();
 
+          services.AddScoped<IDeliveryMethodReadRepository, DeliveryMethodReadRepository>();
+          services.AddScoped<IDeliveryMethodWriteRepository, DeliveryMethodWriteRepository>();
+
           services.AddSingleton<ICartService, CartService>();
           services.AddScoped<IPaymentService, PaymentService>();
 
